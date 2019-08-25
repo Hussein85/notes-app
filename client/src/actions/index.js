@@ -32,19 +32,12 @@ export const deleteTodo = _id => async dispatch => {
   dispatch({ type: DELETE_TODO, _id });
 };
 
-export const editTodo = (todo, content) => async dispatch => {
+export const editTodo = updatedTodo => async dispatch => {
   let url = "/api/edit/";
-
   let newContent = {};
-  newContent["content"] = content;
+  newContent["content"] = updatedTodo.content;
 
-  const res = await axios.put(url.concat(todo._id), newContent);
+  const res = await axios.put(url.concat(updatedTodo._id), newContent);
 
   dispatch({ type: EDIT_TODO, res });
 };
-
-/*
-axios.put('https://example.com/cats/1', {
-    name: 'Tophat Cat'
-  })
-*/

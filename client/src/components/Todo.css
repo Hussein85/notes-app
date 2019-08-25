@@ -1,0 +1,12 @@
+.todoTitle {
+  font-size: 20px;
+}
+
+.collection .collection-item {
+  padding: 1px 13px !important;
+  line-height: 2rem !important;
+}
+
+.adjustButton {
+  margin-right: 5px;
+}

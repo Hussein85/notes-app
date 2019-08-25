@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { deleteTodo, editTodo } from "../actions";
 import { connect } from "react-redux";
+import "./Todo.css";
 
 class Todo extends Component {
   constructor() {
@@ -27,10 +28,9 @@ class Todo extends Component {
   };
 
   handleEditingChange = event => {
-    let updatedContent = event.target.value;
-    const todo = this.props.todo;
-    todo.content = updatedContent;
-    this.props.editTodo(todo, updatedContent);
+    let updatedTodo = this.props.todo;
+    updatedTodo.content = event.target.value;
+    this.props.editTodo(updatedTodo);
   };
 
   render() {
@@ -48,21 +48,18 @@ class Todo extends Component {
     return (
       <div className="collection-item">
         <p style={viewStyle}>
-          <label>
-            <input
-              onClick={() => {
-                this.deleteTodo(todo._id);
-              }}
-              className="with-gap"
-              name="group3"
-              type="radio"
-            />
-            <span>{todo.content}</span>
-          </label>
-
+          <span className="todoTitle">{todo.content}</span>
           <button
-            onClick={this.handleEditing.bind(this)}
-            className="btn-floating btn-small blue right"
+            onClick={() => {
+              this.deleteTodo(todo._id);
+            }}
+            className="btn-floating btn-small red right"
+          >
+            <i className="large material-icons">delete</i>
+          </button>
+          <button
+            onClick={this.handleEditing}
+            className="adjustButton btn-floating btn-small blue right"
           >
             <i className="large material-icons">mode_edit</i>
           </button>
