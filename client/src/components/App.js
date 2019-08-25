@@ -5,7 +5,6 @@ import * as actions from "../actions";
 
 // import components
 import Header from "./Header";
-import Landing from "./Landing";
 import TodoList from "./TodoList";
 
 class App extends Component {

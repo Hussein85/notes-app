@@ -1,10 +1,17 @@
 import React, { Component } from "react";
 import AddTodo from "./AddTodo";
+import Todo from "./Todo";
+
 import { connect } from "react-redux";
-import { fetchTodos, addTodo, deleteTodo } from "../actions";
+import { fetchTodos, addTodo } from "../actions";
 import "./TodoList.css";
 
 class TodoList extends Component {
+  constructor() {
+    super();
+    this.state = { editing: false };
+  }
+
   componentDidMount() {
     this.props.fetchTodos();
   }
@@ -13,39 +20,28 @@ class TodoList extends Component {
     this.props.addTodo(todo);
   };
 
-  deleteTodo = id => {
-    this.props.deleteTodo(id);
-  };
-
   renderTodoList() {
     const { todos } = this.props;
+
+    let viewStyle = {};
+    let editStyle = {};
+
+    if (this.state.editing) {
+      viewStyle.display = "none";
+    } else {
+      editStyle.display = "none";
+    }
+
     return (
       todos &&
       todos.map(todo => {
-        return (
-          <div className="collection-item" key={todo._id}>
-            <p>
-              <label>
-                <input
-                  onClick={() => {
-                    this.deleteTodo(todo._id);
-                  }}
-                  className="with-gap"
-                  name="group3"
-                  type="radio"
-                />
-                <span>{todo.content}</span>
-              </label>
-            </p>
-          </div>
-        );
+        return <Todo key={todo._id} todo={todo} />;
       })
     );
   }
 
   render() {
     const { todos } = this.props;
-    console.log("todos: ", todos);
     return (
       <div>
         <div className="addTodo">
@@ -63,11 +59,7 @@ function mapStateToProps({ todos }) {
   return { todos };
 }
 
-//function mapStateToProps(state) {
-//  return { auth: state.auth };
-//}
-
 export default connect(
   mapStateToProps,
-  { fetchTodos, addTodo, deleteTodo }
+  { fetchTodos, addTodo }
 )(TodoList);

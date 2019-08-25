@@ -1,5 +1,11 @@
 import axios from "axios";
-import { FETCH_USER, FETCH_TODOS, ADD_TODO, DELETE_TODO } from "./types";
+import {
+  FETCH_USER,
+  FETCH_TODOS,
+  ADD_TODO,
+  DELETE_TODO,
+  EDIT_TODO
+} from "./types";
 
 export const fetchUser = () => async dispatch => {
   const res = await axios.get("/api/current_user");
@@ -21,9 +27,24 @@ export const addTodo = todo => async dispatch => {
 
 export const deleteTodo = _id => async dispatch => {
   const url = "/api/delete/";
-
-  const value = url.concat(_id);
-  await axios.delete(value);
+  await axios.delete(url.concat(_id));
 
   dispatch({ type: DELETE_TODO, _id });
 };
+
+export const editTodo = (todo, content) => async dispatch => {
+  let url = "/api/edit/";
+
+  let newContent = {};
+  newContent["content"] = content;
+
+  const res = await axios.put(url.concat(todo._id), newContent);
+
+  dispatch({ type: EDIT_TODO, res });
+};
+
+/*
+axios.put('https://example.com/cats/1', {
+    name: 'Tophat Cat'
+  })
+*/

@@ -29,4 +29,18 @@ module.exports = app => {
       return res.sendStatus(200);
     });
   });
+
+  app.put("/api/edit/:id", async (req, res, next) => {
+    const _id = req.params.id;
+
+    const filter = {};
+    filter["_id"] = _id;
+    const update = req.body;
+
+    let updatedTodo = await Todo.findOneAndUpdate(filter, update, {
+      new: true
+    });
+
+    res.send(updatedTodo);
+  });
 };
