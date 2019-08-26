@@ -4,33 +4,30 @@ import { connect } from "react-redux";
 import "./css/Todo.css";
 
 class Todo extends Component {
-  constructor() {
-    super();
-    this.state = { editing: false };
-  }
+  state = {
+    editing: false,
+    editText: this.props.todo.content
+  };
 
   deleteTodo = id => {
     this.props.deleteTodo(id);
   };
 
-  editTodo = () => {
-    this.props.handleMarkEdit(this.props.id);
+  setEditText = text => {
+    this.setState({ editText: text });
   };
 
-  handleEditing = event => {
+  enableEditing = event => {
     this.setState({ editing: true });
   };
 
   handleEditingDone = event => {
     if (event.keyCode === 13) {
       this.setState({ editing: false });
+      let updatedTodo = this.props.todo;
+      updatedTodo.content = this.state.editText;
+      this.props.editTodo(updatedTodo);
     }
-  };
-
-  handleEditingChange = event => {
-    let updatedTodo = this.props.todo;
-    updatedTodo.content = event.target.value;
-    this.props.editTodo(updatedTodo);
   };
 
   render() {
@@ -58,19 +55,22 @@ class Todo extends Component {
             <i className="large material-icons">delete</i>
           </button>
           <button
-            onClick={this.handleEditing}
+            onClick={this.enableEditing}
             className="adjustButton btn-floating btn-small blue right"
           >
             <i className="large material-icons">mode_edit</i>
           </button>
         </p>
-        <input
-          onKeyDown={this.handleEditingDone.bind(this)}
-          style={editStyle}
-          type="text"
-          value={todo.content}
-          onChange={this.handleEditingChange.bind(this)}
-        />
+        <div style={editStyle}>
+          <input
+            onKeyDown={this.handleEditingDone.bind(this)}
+            type="text"
+            value={this.state.editText}
+            onChange={e => {
+              this.setEditText(e.target.value);
+            }}
+          />
+        </div>
       </div>
     );
   }
