@@ -4,7 +4,7 @@ import Todo from "./Todo";
 
 import { connect } from "react-redux";
 import { fetchTodos, addTodo } from "../actions";
-import "./TodoList.css";
+import "./css/TodoList.css";
 
 class TodoList extends Component {
   constructor() {
