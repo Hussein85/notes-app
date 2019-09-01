@@ -5,7 +5,7 @@ import * as actions from "../actions";
 
 // import components
 import Header from "./Header";
-import TodoList from "./TodoList";
+import NoteList from "./NoteList";
 
 class App extends Component {
   render() {
@@ -14,8 +14,7 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <Header />
-            <Route exact path="/" component={TodoList} />
-            <Route exact path="/todoList" component={TodoList} />
+            <Route exact path="/" component={NoteList} />
           </div>
         </BrowserRouter>
       </div>

@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const keys = require("./config/keys");
-require("./models/Todo");
+require("./models/Note");
 
 // connect to mongoDB
 mongoose.connect(keys.mongoURI);
@@ -12,7 +12,7 @@ const app = express();
 // Middlewares are used here
 app.use(bodyParser.json());
 
-require("./routes/todoRoutes")(app);
+require("./routes/noteRoutes")(app);
 
 if (process.env.NODE_ENV === "production") {
   // Express will serve up production assets

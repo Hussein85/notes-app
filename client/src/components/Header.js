@@ -8,7 +8,7 @@ class Header extends Component {
       <nav>
         <div className="nav-wrapper">
           <Link to={"/"} className="left brand-logo adjust">
-            To-Do App
+            Note App
           </Link>
         </div>
       </nav>

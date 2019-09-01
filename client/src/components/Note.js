@@ -1,16 +1,16 @@
 import React, { Component } from "react";
-import { deleteTodo, editTodo } from "../actions";
+import { deleteNote, editNote } from "../actions";
 import { connect } from "react-redux";
-import "./css/Todo.css";
+import "./css/Note.css";
 
-class Todo extends Component {
+class Note extends Component {
   state = {
     editing: false,
-    editText: this.props.todo.content
+    editText: this.props.note.content
   };
 
-  deleteTodo = id => {
-    this.props.deleteTodo(id);
+  deleteNote = id => {
+    this.props.deleteNote(id);
   };
 
   setEditText = text => {
@@ -24,14 +24,14 @@ class Todo extends Component {
   handleEditingDone = event => {
     if (event.keyCode === 13) {
       this.setState({ editing: false });
-      let updatedTodo = this.props.todo;
-      updatedTodo.content = this.state.editText;
-      this.props.editTodo(updatedTodo);
+      let updatedNote = this.props.note;
+      updatedNote.content = this.state.editText;
+      this.props.editNote(updatedNote);
     }
   };
 
   render() {
-    const todo = this.props.todo;
+    const note = this.props.note;
 
     let viewStyle = {};
     let editStyle = {};
@@ -45,10 +45,10 @@ class Todo extends Component {
     return (
       <div className="collection-item">
         <p style={viewStyle}>
-          <span className="todoTitle">{todo.content}</span>
+          <span className="noteTitle">{note.content}</span>
           <button
             onClick={() => {
-              this.deleteTodo(todo._id);
+              this.deleteNote(note._id);
             }}
             className="btn-floating btn-small red right"
           >
@@ -76,11 +76,7 @@ class Todo extends Component {
   }
 }
 
-function mapStateToProps({ todos }) {
-  return { todos };
-}
-
 export default connect(
-  mapStateToProps,
-  { deleteTodo, editTodo }
-)(Todo);
+  null,
+  { deleteNote, editNote }
+)(Note);

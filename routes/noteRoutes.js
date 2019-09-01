@@ -1,28 +1,28 @@
 const mongoose = require("mongoose");
 
-const Todo = mongoose.model("todos");
+const Note = mongoose.model("note");
 
 module.exports = app => {
-  app.get("/api/todos", async (req, res) => {
-    const todos = await Todo.find();
+  app.get("/api/notes", async (req, res) => {
+    const notes = await Note.find();
 
-    res.send(todos);
+    res.send(notes);
   });
 
-  app.post("/api/todos", async (req, res) => {
-    const todo = new Todo({
+  app.post("/api/notes", async (req, res) => {
+    const note = new Note({
       content: req.body.content
     });
 
-    await todo.save((err, todo) => {
-      res.send(todo);
+    await note.save((err, note) => {
+      res.send(note);
     });
   });
 
   app.delete("/api/delete/:id", (req, res) => {
     const _id = req.params.id;
 
-    Todo.findByIdAndRemove(_id, (err, data) => {
+    Note.findByIdAndRemove(_id, (err, data) => {
       if (err) {
         return res.sendStatus(500);
       }
@@ -37,10 +37,10 @@ module.exports = app => {
     filter["_id"] = _id;
     const update = req.body;
 
-    let updatedTodo = await Todo.findOneAndUpdate(filter, update, {
+    let updatedNote = await Note.findOneAndUpdate(filter, update, {
       new: true
     });
 
-    res.send(updatedTodo);
+    res.send(updatedNote);
   });
 };

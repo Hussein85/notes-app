@@ -1,31 +1,31 @@
 import axios from "axios";
-import { FETCH_TODOS, ADD_TODO, DELETE_TODO, EDIT_TODO } from "./types";
+import { FETCH_NOTES, ADD_NOTE, DELETE_NOTE, EDIT_NOTE } from "./types";
 
-export const fetchTodos = () => async dispatch => {
-  const res = await axios.get("/api/todos");
+export const fetchNotes = () => async dispatch => {
+  const res = await axios.get("/api/notes");
 
-  dispatch({ type: FETCH_TODOS, payload: res.data });
+  dispatch({ type: FETCH_NOTES, payload: res.data });
 };
 
-export const addTodo = todo => async dispatch => {
-  const res = await axios.post("/api/todos", todo);
+export const addNote = note => async dispatch => {
+  const res = await axios.post("/api/notes", note);
 
-  dispatch({ type: ADD_TODO, res });
+  dispatch({ type: ADD_NOTE, res });
 };
 
-export const deleteTodo = _id => async dispatch => {
+export const deleteNote = _id => async dispatch => {
   const url = "/api/delete/";
   await axios.delete(url.concat(_id));
 
-  dispatch({ type: DELETE_TODO, _id });
+  dispatch({ type: DELETE_NOTE, _id });
 };
 
-export const editTodo = updatedTodo => async dispatch => {
+export const editNote = updatedNote => async dispatch => {
   let url = "/api/edit/";
   let newContent = {};
-  newContent["content"] = updatedTodo.content;
+  newContent["content"] = updatedNote.content;
 
-  const res = await axios.put(url.concat(updatedTodo._id), newContent);
+  const res = await axios.put(url.concat(updatedNote._id), newContent);
 
-  dispatch({ type: EDIT_TODO, res });
+  dispatch({ type: EDIT_NOTE, res });
 };

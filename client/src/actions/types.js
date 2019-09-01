@@ -1,4 +1,4 @@
-export const FETCH_TODOS = "fetch_todos";
-export const ADD_TODO = "add_todo";
-export const DELETE_TODO = "delete_todo";
-export const EDIT_TODO = "edit_todo";
+export const FETCH_NOTES = "fetch_notes";
+export const ADD_NOTE = "add_note";
+export const DELETE_NOTE = "delete_note";
+export const EDIT_NOTE = "edit_note";

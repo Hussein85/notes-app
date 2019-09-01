@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class AddTodo extends Component {
+class AddNote extends Component {
   state = {
     _id: 0,
     content: ""
@@ -14,7 +14,7 @@ class AddTodo extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.addTodo(this.state);
+    this.props.addNote(this.state);
     this.setState({
       content: ""
     });
@@ -36,4 +36,4 @@ class AddTodo extends Component {
   }
 }
 
-export default AddTodo;
+export default AddNote;
