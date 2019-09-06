@@ -39,6 +39,7 @@ class App extends Component {
           */}
 
           <Sidebar />
+          <NoteList />
         </div>
       </div>
     );

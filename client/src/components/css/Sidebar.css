@@ -1,3 +1,19 @@
 .background {
   background: linear-gradient(180deg, #f0fff4 0%, #9ae6b4 100%);
 }
+
+.box {
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.icon:hover i {
+  color: #48bb78;
+}
+.icon:hover span {
+  color: #48bb78;
+}
+
+.test:hover div {
+  color: #48bb78;
+}
