@@ -5,8 +5,9 @@ import * as actions from "../actions";
 
 // import components
 import Header from "./Header";
-import NoteList from "./NoteList";
 import Sidebar from "./Sidebar";
+import NoteList from "./NoteList";
+import NoteDetail from "./NoteDetail";
 
 import Image from "../img/background.jpg";
 
@@ -40,6 +41,7 @@ class App extends Component {
 
           <Sidebar />
           <NoteList />
+          <NoteDetail />
         </div>
       </div>
     );
