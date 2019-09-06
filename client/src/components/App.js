@@ -6,17 +6,40 @@ import * as actions from "../actions";
 // import components
 import Header from "./Header";
 import NoteList from "./NoteList";
+import Sidebar from "./Sidebar";
+
+import Image from "../img/background.jpg";
+
+const styles = {
+  container: {
+    backgroundImage: `url(${Image})`,
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover"
+  }
+};
 
 class App extends Component {
   render() {
     return (
-      <div className="container">
-        <BrowserRouter>
+      <div
+        className="bg-image bg-gray-100 py-16 px-24"
+        style={styles.container}
+      >
+        {/* Container */}
+        <div className="flex overflow-hidden shadow-xl min-h-screen rounded-lg">
+          {/* 
+          <div className="container">
+          <BrowserRouter>
           <div>
-            <Header />
-            <Route exact path="/" component={NoteList} />
+          <Header />
+          <Route exact path="/" component={NoteList} />
           </div>
-        </BrowserRouter>
+          </BrowserRouter>
+          </div>
+          */}
+
+          <Sidebar />
+        </div>
       </div>
     );
   }

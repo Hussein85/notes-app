@@ -43,12 +43,14 @@ class NoteList extends Component {
     const { notes } = this.props;
     return (
       <div>
+        {/* 
         <div className="addNote">
           <AddNote addNote={this.addNote} />
         </div>
         <div className={notes.length > 0 ? "collection" : "hidden"}>
           {this.renderNoteList()}
         </div>
+        */}
       </div>
     );
   }
