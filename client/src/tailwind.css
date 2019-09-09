@@ -33,4 +33,36 @@
   @apply bg-gray-500;
 }
 
+.btn2 {
+  @apply w-56 inline-block text-center px-5 py-3 rounded-lg shadow-lg text-xs uppercase tracking-wider font-semibold;
+}
+
+.btn2-green {
+  @apply bg-green-500 text-white;
+}
+
+.btn2-green:hover {
+  @apply bg-green-400;
+}
+
+.btn2-green:active {
+  @apply bg-green-500;
+}
+
+.noteTitle {
+  @apply tracking-wider text-xs font-bold text-gray-600;
+}
+
+.noteTitle:hover {
+  @apply text-green-500;
+}
+
+.noteDate {
+  @apply text-gray-400 text-xs font-medium;
+}
+
+.noteTruncatedBody {
+  @apply text-gray-400 text-xs font-medium truncate;
+}
+
 @tailwind utilities;

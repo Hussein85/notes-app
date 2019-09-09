@@ -3,12 +3,12 @@ import React, { Component } from "react";
 class AddNote extends Component {
   state = {
     _id: 0,
-    content: ""
+    body: ""
   };
 
   handleChange = e => {
     this.setState({
-      content: e.target.value
+      body: e.target.value
     });
   };
 
@@ -16,7 +16,7 @@ class AddNote extends Component {
     e.preventDefault();
     this.props.addNote(this.state);
     this.setState({
-      content: ""
+      body: ""
     });
   };
 
@@ -28,7 +28,7 @@ class AddNote extends Component {
             placeholder="Enter new task"
             type="text"
             onChange={this.handleChange}
-            value={this.state.content}
+            value={this.state.body}
           />
         </form>
       </div>

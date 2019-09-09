@@ -4,11 +4,7 @@ import { connect } from "react-redux";
 import "./css/Note.css";
 
 class Note extends Component {
-  state = {
-    editing: false,
-    editText: this.props.note.content
-  };
-
+  /*
   deleteNote = id => {
     this.props.deleteNote(id);
   };
@@ -25,27 +21,35 @@ class Note extends Component {
     if (event.keyCode === 13) {
       this.setState({ editing: false });
       let updatedNote = this.props.note;
-      updatedNote.content = this.state.editText;
+      updatedNote.body = this.state.editText;
       this.props.editNote(updatedNote);
     }
   };
+  */
 
   render() {
     const note = this.props.note;
 
-    let viewStyle = {};
-    let editStyle = {};
-
-    if (this.state.editing) {
-      viewStyle.display = "none";
-    } else {
-      editStyle.display = "none";
-    }
+    const date = note.updated_at;
+    let current_dateTime = new Date(date);
+    let formated_dateTime = current_dateTime.toLocaleDateString();
 
     return (
+      <div>
+        <div className="p-4">
+          <div className="flex justify-between">
+            <a href="#" className="noteTitle">
+              {note.title}
+            </a>
+            <div className="noteDate">{formated_dateTime}</div>
+          </div>
+          <p className="noteTruncatedBody">{note.body}</p>
+        </div>
+
+        {/*
       <div className="collection-item">
         <p style={viewStyle}>
-          <span className="noteTitle">{note.content}</span>
+          <span className="noteTitle">{note.body}</span>
           <button
             onClick={() => {
               this.deleteNote(note._id);
@@ -71,6 +75,8 @@ class Note extends Component {
             }}
           />
         </div>
+      </div>
+          */}
       </div>
     );
   }

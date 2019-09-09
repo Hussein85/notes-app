@@ -11,7 +11,10 @@ module.exports = app => {
 
   app.post("/api/notes", async (req, res) => {
     const note = new Note({
-      content: req.body.content
+      title: req.body.title,
+      body: req.body.body,
+      created_at: Date.now(),
+      updated_at: Date.now()
     });
 
     await note.save((err, note) => {

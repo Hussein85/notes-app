@@ -8,6 +8,7 @@ export const fetchNotes = () => async dispatch => {
 };
 
 export const addNote = note => async dispatch => {
+  console.log("action create ", note);
   const res = await axios.post("/api/notes", note);
 
   dispatch({ type: ADD_NOTE, res });
@@ -22,10 +23,10 @@ export const deleteNote = _id => async dispatch => {
 
 export const editNote = updatedNote => async dispatch => {
   let url = "/api/edit/";
-  let newContent = {};
-  newContent["content"] = updatedNote.content;
+  let newBody = {};
+  newBody["body"] = updatedNote.body;
 
-  const res = await axios.put(url.concat(updatedNote._id), newContent);
+  const res = await axios.put(url.concat(updatedNote._id), newBody);
 
   dispatch({ type: EDIT_NOTE, res });
 };
