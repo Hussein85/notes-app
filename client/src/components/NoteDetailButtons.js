@@ -31,7 +31,13 @@ class NoteDetailButtons extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    selectedNote: state.selectedNote
+  };
+}
+
 export default connect(
-  null,
+  mapStateToProps,
   { addNote }
 )(NoteDetailButtons);

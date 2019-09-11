@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { deleteNote, editNote } from "../actions";
 import { connect } from "react-redux";
+import { setSelectedNote } from "../actions";
 import "./css/Note.css";
 
 class Note extends Component {
@@ -27,6 +27,10 @@ class Note extends Component {
   };
   */
 
+  onTitleClick = e => {
+    this.props.setSelectedNote(this.props.note);
+  };
+
   render() {
     const note = this.props.note;
 
@@ -38,9 +42,12 @@ class Note extends Component {
       <div>
         <div className="p-4">
           <div className="flex justify-between">
-            <a href="#" className="noteTitle">
+            <button
+              onClick={this.onTitleClick}
+              className="noteTitle focus:outline-none"
+            >
               {note.title}
-            </a>
+            </button>
             <div className="noteDate">{formated_dateTime}</div>
           </div>
           <p className="noteTruncatedBody">{note.body}</p>
@@ -84,5 +91,5 @@ class Note extends Component {
 
 export default connect(
   null,
-  { deleteNote, editNote }
+  { setSelectedNote }
 )(Note);

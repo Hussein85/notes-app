@@ -10,14 +10,14 @@ export default function(state = [], action) {
     case FETCH_NOTES:
       return action.payload;
     case ADD_NOTE:
-      const note = action.res.data;
-      return [...state, note];
+      const note = action.payload;
+      return [note, ...state];
     case DELETE_NOTE:
       return state.filter(note => {
-        return note._id !== action._id;
+        return note._id !== action.payload;
       });
     case EDIT_NOTE:
-      const updatedNote = action.res.data;
+      const updatedNote = action.payload;
       return state.map((note, id) => {
         if (id !== updatedNote._id) {
           // This isn't the item we care about - keep it as-is

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 //import { BrowserRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../actions";
+//import { VisibilityFilters } from "../actions";
 
 // import components
 //import Header from "./Header";
@@ -20,6 +21,7 @@ const styles = {
 };
 
 class App extends Component {
+  /*
   state = {
     selectedNote: {
       title: "Title 1",
@@ -35,15 +37,16 @@ class App extends Component {
         pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
         culpa qui officia deserunt mollit anim id est laborum.`
     },
-    addMode: false
+    addMode: false,
+    visibilityFilter: "SHOW_ALL"
   };
+  */
 
-  setAddMode = mode => {
-    this.setState({ addMode: mode });
-  };
+  componentDidMount() {
+    this.props.fetchNotes();
+  }
 
   render() {
-    const selectedNote = this.state.selectedNote;
     return (
       <div
         className="bg-image bg-gray-100 py-16 px-24"
@@ -52,8 +55,8 @@ class App extends Component {
         {/* Container */}
         <div className="flex overflow-hidden shadow-xl min-h-screen rounded-lg">
           <Sidebar />
-          <NoteList setAddMode={this.setAddMode} />
-          <NoteDetail note={selectedNote} addMode={this.state.addMode} />
+          <NoteList />
+          <NoteDetail />
           {/* 
           <div className="container">
           <BrowserRouter>
@@ -69,6 +72,30 @@ class App extends Component {
     );
   }
 }
+
+/*
+getVisibleTodos = (todos, filter) => {
+  switch (filter) {
+    case VisibilityFilters.SHOW_ALL:
+      return todos;
+    case VisibilityFilters.SHOW_COMPLETED:
+      return todos.filter(t => t.completed);
+    case VisibilityFilters.SHOW_ACTIVE:
+      return todos.filter(t => !t.completed);
+    default:
+      throw new Error("Unknown filter: " + filter);
+  }
+};
+*/
+
+//function mapStateToProps({ selectedNote, notes }) {
+//  return { selectedNote, notes };
+//}
+
+// Same as above
+//function mapStateToProps(state) {
+//  return { selectedNote: state.selectedNote };
+//}
 
 export default connect(
   null,

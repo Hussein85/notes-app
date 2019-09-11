@@ -3,41 +3,49 @@ import SearchBar from "./SearchBar";
 import Note from "./Note";
 
 import { connect } from "react-redux";
-import { fetchNotes, addNote } from "../actions";
+import { setMode } from "../actions";
+import { ADD_MODE } from "../actions/types";
+
 import "./css/NoteList.css";
 
 class NoteList extends Component {
-  componentDidMount() {
-    this.props.fetchNotes();
-  }
-
-  addNote = note => {
-    //this.props.addNote(note);
-  };
-
   onSearchSubmit = term => {
     console.log("search term: ", term);
   };
 
+  getVisibleNote(notes) {
+    // TODO: Implement visibilty filters
+    //const visibilityFilter = // get from store
+
+    // sort notes
+
+    return notes.sort(function(a, b) {
+      return new Date(b.updated_at) - new Date(a.updated_at);
+    });
+
+    //return notes.sort((a, b) => (a.updated_At > b.updated_At ? 1 : -1));
+  }
+
   renderNoteList() {
     const { notes } = this.props;
+    const visibleNotes = this.getVisibleNote(notes);
 
     return (
-      notes &&
-      notes.map(note => {
+      visibleNotes &&
+      visibleNotes.map(note => {
         return <Note key={note._id} note={note} />;
       })
     );
   }
 
-  onButtonClick = e => {
-    this.props.setAddMode(true);
+  onAddButtonClick = e => {
+    this.props.setMode(ADD_MODE);
   };
 
   render() {
     return (
       <div>
-        <div className="bg-green-100 flex w-64 flex-none min-h-screen flex-col justify-between">
+        <div className="bg-green-100 flex w-64 min-h-screen flex-col justify-between">
           <div>
             <SearchBar onSubmit={this.onSearchSubmit} />
 
@@ -47,7 +55,7 @@ class NoteList extends Component {
           </div>
 
           <div className="flex justify-center mb-10">
-            <button onClick={this.onButtonClick} className="btn2 btn2-green">
+            <button onClick={this.onAddButtonClick} className="btn2 btn2-green">
               Add a note
             </button>
           </div>
@@ -72,5 +80,5 @@ function mapStateToProps({ notes }) {
 
 export default connect(
   mapStateToProps,
-  { fetchNotes, addNote }
+  { setMode }
 )(NoteList);

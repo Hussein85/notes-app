@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { deleteNote, editNote } from "../actions";
+import { setSelectedNote } from "../actions";
+import { ADD_MODE } from "../actions/types";
+
 import { connect } from "react-redux";
 import "./css/NoteDetail.css";
 import NoteDetailButtons from "./NoteDetailButtons";
@@ -7,7 +9,8 @@ import NoteDetailButtons from "./NoteDetailButtons";
 class NoteDetail extends Component {
   state = {
     title: "",
-    body: ""
+    body: "",
+    starred: false
   };
 
   onTitleChange = e => {
@@ -22,11 +25,15 @@ class NoteDetail extends Component {
     });
   };
 
-  renderNoteDetail() {
-    const addMode = this.props.addMode;
-    const note = this.props.note;
+  resetInputs = () => {};
 
-    if (addMode) {
+  renderNoteDetail() {
+    const mode = this.props.mode;
+    const note = this.props.selectedNote;
+
+    console.log("note: ", note);
+
+    if (mode == ADD_MODE) {
       return (
         <div>
           <div className="focus:outline-none tracking-wider text-green-500 font-bold text-2xl">
@@ -72,7 +79,14 @@ class NoteDetail extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    selectedNote: state.selectedNote,
+    mode: state.mode
+  };
+}
+
 export default connect(
-  null,
-  { deleteNote, editNote }
+  mapStateToProps,
+  { setSelectedNote }
 )(NoteDetail);
