@@ -694,6 +694,10 @@ video {
   color: #48bb78;
 }
 
+.selectedNote {
+  color: #48bb78;
+}
+
 .noteDate {
   color: #cbd5e0;
   font-size: 0.75rem;

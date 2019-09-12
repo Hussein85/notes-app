@@ -21,10 +21,8 @@ export default function(state = [], action) {
 
       const updatedNotes = state.map((note, id) => {
         if (note._id !== updatedNote._id) {
-          // This isn't the item we care about - keep it as-is
           return note;
         }
-        // Otherwise, this is the one we want - return an updated value
         return {
           ...note,
           ...updatedNote

@@ -16,13 +16,9 @@ class NoteList extends Component {
     // TODO: Implement visibilty filters
     //const visibilityFilter = // get from store
 
-    // sort notes
-
     return notes.sort((a, b) => {
       return new Date(b.updated_at) - new Date(a.updated_at);
     });
-
-    //return notes.sort((a, b) => (a.updated_At > b.updated_At ? 1 : -1));
   }
 
   renderNoteList() {

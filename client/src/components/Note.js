@@ -35,10 +35,13 @@ class Note extends Component {
 
   render() {
     const note = this.props.note;
-
+    const selectedNote = this.props.selectedNote;
     const date = note.updated_at;
     let current_dateTime = new Date(date);
     let formated_dateTime = current_dateTime.toLocaleDateString();
+
+    console.log("selectedNote: ", selectedNote);
+    console.log("note : ", note);
 
     return (
       <div>
@@ -46,7 +49,10 @@ class Note extends Component {
           <div className="flex justify-between">
             <button
               onClick={this.onTitleClick}
-              className="noteTitle focus:outline-none"
+              className={
+                "noteTitle focus:outline-none " +
+                (selectedNote._id === note._id ? "selectedNote" : "")
+              }
             >
               {note.title}
             </button>
@@ -91,7 +97,13 @@ class Note extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    selectedNote: state.selectedNote
+  };
+}
+
 export default connect(
-  null,
+  mapStateToProps,
   { setSelectedNote, setMode }
 )(Note);

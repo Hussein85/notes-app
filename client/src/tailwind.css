@@ -57,6 +57,10 @@
   @apply text-green-500;
 }
 
+.selectedNote {
+  @apply text-green-500;
+}
+
 .noteDate {
   @apply text-gray-400 text-xs font-medium;
 }
