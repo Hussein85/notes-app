@@ -1,13 +1,25 @@
 import React, { Component } from "react";
-import { addNote, setMode, setSelectedNote } from "../actions";
-import { VIEW_MODE } from "../actions/types";
+import { addNote, editNote, setMode, setSelectedNote } from "../actions";
+import { ADD_MODE, VIEW_MODE, EDIT_MODE } from "../actions/types";
 
 import { connect } from "react-redux";
 
 class NoteDetailButtons extends Component {
-  onConfirm = e => {
+  onConfirm = () => {
+    const mode = this.props.mode;
     this.props.setMode(VIEW_MODE);
-    this.props.addNote(this.props.selectedNote);
+
+    if (mode === ADD_MODE) {
+      this.props.addNote(this.props.selectedNote);
+    }
+
+    if (mode === EDIT_MODE) {
+      this.props.editNote(this.props.selectedNote);
+    }
+  };
+
+  onEdit = () => {
+    this.props.setMode(EDIT_MODE);
   };
 
   render() {
@@ -20,7 +32,7 @@ class NoteDetailButtons extends Component {
         <button className="focus:outline-none">
           <i className="ml-4 far fa-folder text-gray-700 hover:text-green-400"></i>
         </button>
-        <button className="focus:outline-none">
+        <button onClick={this.onEdit} className="focus:outline-none">
           <i className="ml-4 fas fa-pen text-gray-700 hover:text-green-400"></i>
         </button>
         <button className="focus:outline-none">
@@ -49,5 +61,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { addNote, setMode, setSelectedNote }
+  { addNote, editNote, setMode, setSelectedNote }
 )(NoteDetailButtons);

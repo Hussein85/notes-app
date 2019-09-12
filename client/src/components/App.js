@@ -37,7 +37,7 @@ class App extends Component {
         pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
         culpa qui officia deserunt mollit anim id est laborum.`
     },
-    addMode: false,
+    mode: VIEW_MODE,
     visibilityFilter: "SHOW_ALL"
   };
   */

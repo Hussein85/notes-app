@@ -49,30 +49,8 @@ class NoteDetail extends Component {
   };
 
   renderNoteDetail() {
-    if (this.props.mode === ADD_MODE) {
-      return (
-        <div>
-          <div className="focus:outline-none tracking-wider text-green-500 font-bold text-2xl">
-            <input
-              className="focus:outline-none"
-              placeholder="Enter a title"
-              type="text"
-              onChange={this.onTitleChange}
-              value={this.props.selectedNote.title}
-            />
-          </div>
-          <p className=" text-sm font-medium text-gray-600 mt-4">
-            <textarea
-              className="w-full h-64 textArea focus:outline-none"
-              placeholder="Enter description for the note"
-              type="text"
-              onChange={this.onBodyChange}
-              value={this.props.selectedNote.body}
-            />
-          </p>
-        </div>
-      );
-    } else {
+    const mode = this.props.mode;
+    if (mode === VIEW_MODE) {
       return (
         <div>
           <div className="tracking-wider text-green-500 font-bold text-2xl">
@@ -80,6 +58,30 @@ class NoteDetail extends Component {
           </div>
           <p className="text-sm font-medium text-gray-600 mt-4">
             {this.props.selectedNote.body}
+          </p>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <div>
+            <input
+              autoFocus
+              className="focus:outline-none font-bold text-2xl text-green-500 tracking-wider"
+              placeholder="Enter a title"
+              type="text"
+              onChange={this.onTitleChange}
+              value={this.props.selectedNote.title}
+            />
+          </div>
+          <p className="mt-4">
+            <textarea
+              className="w-full h-64 textArea focus:outline-none text-sm font-medium text-gray-600"
+              placeholder="Enter description for the note"
+              type="text"
+              onChange={this.onBodyChange}
+              value={this.props.selectedNote.body}
+            />
           </p>
         </div>
       );
