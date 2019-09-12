@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { setSelectedNote } from "../actions";
+import { setSelectedNote, setMode } from "../actions";
+import { VIEW_MODE } from "../actions/types";
 import "./css/Note.css";
 
 class Note extends Component {
@@ -29,6 +30,7 @@ class Note extends Component {
 
   onTitleClick = e => {
     this.props.setSelectedNote(this.props.note);
+    this.props.setMode(VIEW_MODE);
   };
 
   render() {
@@ -91,5 +93,5 @@ class Note extends Component {
 
 export default connect(
   null,
-  { setSelectedNote }
+  { setSelectedNote, setMode }
 )(Note);

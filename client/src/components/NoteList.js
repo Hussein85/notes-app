@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import SearchBar from "./SearchBar";
 import Note from "./Note";
+import AddButton from "./AddButton";
 
 import { connect } from "react-redux";
-import { setMode, setSelectedNote } from "../actions";
-import { ADD_MODE } from "../actions/types";
 
 import "./css/NoteList.css";
 
@@ -38,11 +37,6 @@ class NoteList extends Component {
     );
   }
 
-  onAddButtonClick = e => {
-    this.props.setMode(ADD_MODE);
-    this.props.setSelectedNote({ title: "", body: "" });
-  };
-
   render() {
     return (
       <div>
@@ -55,11 +49,7 @@ class NoteList extends Component {
             </div>
           </div>
 
-          <div className="flex justify-center mb-10">
-            <button onClick={this.onAddButtonClick} className="btn2 btn2-green">
-              Add a note
-            </button>
-          </div>
+          <AddButton />
         </div>
 
         {/* 
@@ -81,7 +71,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  { setMode, setSelectedNote }
-)(NoteList);
+export default connect(mapStateToProps)(NoteList);
