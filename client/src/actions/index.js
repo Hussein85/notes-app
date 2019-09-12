@@ -6,7 +6,10 @@ import {
   EDIT_NOTE,
   SET_SELECTED_NOTE,
   SET_VISIBILITY_FILTER,
-  SET_MODE
+  SET_MODE,
+  UPDATE_TITLE,
+  UPDATE_BODY,
+  RESET_SELECTED_NOTE_PROPERTIES
 } from "./types";
 
 export const fetchNotes = () => async dispatch => {
@@ -41,6 +44,18 @@ export const editNote = updatedNote => async dispatch => {
 
 export const setSelectedNote = selectedNote => dispatch => {
   dispatch({ type: SET_SELECTED_NOTE, payload: selectedNote });
+};
+
+export const updateTitle = title => dispatch => {
+  dispatch({ type: UPDATE_TITLE, payload: title });
+};
+
+export const updateBody = body => dispatch => {
+  dispatch({ type: UPDATE_BODY, payload: body });
+};
+
+export const resetSelectedNoteProperties = () => dispatch => {
+  dispatch({ type: RESET_SELECTED_NOTE_PROPERTIES, payload: "" });
 };
 
 export const setVisibilityFilter = filter => dispatch => {

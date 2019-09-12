@@ -3,7 +3,7 @@ import SearchBar from "./SearchBar";
 import Note from "./Note";
 
 import { connect } from "react-redux";
-import { setMode } from "../actions";
+import { setMode, setSelectedNote } from "../actions";
 import { ADD_MODE } from "../actions/types";
 
 import "./css/NoteList.css";
@@ -13,13 +13,13 @@ class NoteList extends Component {
     console.log("search term: ", term);
   };
 
-  getVisibleNote(notes) {
+  getVisibleNotes(notes) {
     // TODO: Implement visibilty filters
     //const visibilityFilter = // get from store
 
     // sort notes
 
-    return notes.sort(function(a, b) {
+    return notes.sort((a, b) => {
       return new Date(b.updated_at) - new Date(a.updated_at);
     });
 
@@ -28,7 +28,7 @@ class NoteList extends Component {
 
   renderNoteList() {
     const { notes } = this.props;
-    const visibleNotes = this.getVisibleNote(notes);
+    const visibleNotes = this.getVisibleNotes(notes);
 
     return (
       visibleNotes &&
@@ -40,6 +40,7 @@ class NoteList extends Component {
 
   onAddButtonClick = e => {
     this.props.setMode(ADD_MODE);
+    this.props.setSelectedNote({ title: "", body: "" });
   };
 
   render() {
@@ -74,11 +75,13 @@ class NoteList extends Component {
   }
 }
 
-function mapStateToProps({ notes }) {
-  return { notes };
+function mapStateToProps(state) {
+  return {
+    notes: state.notes
+  };
 }
 
 export default connect(
   mapStateToProps,
-  { setMode }
+  { setMode, setSelectedNote }
 )(NoteList);

@@ -1,6 +1,18 @@
 import React, { Component } from "react";
-import { setSelectedNote } from "../actions";
-import { ADD_MODE } from "../actions/types";
+import {
+  setSelectedNote,
+  updateTitle,
+  updateBody,
+  resetSelectedNoteProperties
+} from "../actions";
+import {
+  ADD_MODE,
+  EDIT_MODE,
+  VIEW_MODE,
+  UPDATE_TITLE,
+  UPDATE_BODY,
+  RESET_SELECTED_NOTE_PROPERTIES
+} from "../actions/types";
 
 import { connect } from "react-redux";
 import "./css/NoteDetail.css";
@@ -13,27 +25,31 @@ class NoteDetail extends Component {
     starred: false
   };
 
+  componentDidMount() {
+    if (this.props.mode === ADD_MODE) {
+      this.props.resetSelectedNoteProperties();
+    }
+  }
+
   onTitleChange = e => {
-    this.setState({
+    this.props.updateTitle(e.target.value);
+    /*this.setState({
       title: e.target.value
     });
+    */
   };
 
   onBodyChange = e => {
-    this.setState({
+    this.props.updateBody(e.target.value);
+
+    /*this.setState({
       body: e.target.value
     });
+    */
   };
 
-  resetInputs = () => {};
-
   renderNoteDetail() {
-    const mode = this.props.mode;
-    const note = this.props.selectedNote;
-
-    console.log("note: ", note);
-
-    if (mode == ADD_MODE) {
+    if (this.props.mode === ADD_MODE) {
       return (
         <div>
           <div className="focus:outline-none tracking-wider text-green-500 font-bold text-2xl">
@@ -42,7 +58,7 @@ class NoteDetail extends Component {
               placeholder="Enter a title"
               type="text"
               onChange={this.onTitleChange}
-              value={this.state.title}
+              value={this.props.selectedNote.title}
             />
           </div>
           <p className=" text-sm font-medium text-gray-600 mt-4">
@@ -51,7 +67,7 @@ class NoteDetail extends Component {
               placeholder="Enter description for the note"
               type="text"
               onChange={this.onBodyChange}
-              value={this.state.body}
+              value={this.props.selectedNote.body}
             />
           </p>
         </div>
@@ -60,9 +76,11 @@ class NoteDetail extends Component {
       return (
         <div>
           <div className="tracking-wider text-green-500 font-bold text-2xl">
-            {note.title}
+            {this.props.selectedNote.title}
           </div>
-          <p className="text-sm font-medium text-gray-600 mt-4">{note.body}</p>
+          <p className="text-sm font-medium text-gray-600 mt-4">
+            {this.props.selectedNote.body}
+          </p>
         </div>
       );
     }
@@ -73,7 +91,7 @@ class NoteDetail extends Component {
       <div className="bg-white flex-auto flex flex-col px-16 pt-24 justify-between">
         {this.renderNoteDetail()}
 
-        <NoteDetailButtons note={this.state} />
+        <NoteDetailButtons />
       </div>
     );
   }
@@ -88,5 +106,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { setSelectedNote }
+  { setSelectedNote, updateTitle, updateBody, resetSelectedNoteProperties }
 )(NoteDetail);
