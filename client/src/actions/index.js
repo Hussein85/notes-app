@@ -34,10 +34,7 @@ export const deleteNote = _id => async dispatch => {
 
 export const editNote = updatedNote => async dispatch => {
   let url = "/api/edit/";
-  let newBody = {};
-  newBody["body"] = updatedNote.body;
-
-  const res = await axios.put(url.concat(updatedNote._id), newBody);
+  const res = await axios.put(url.concat(updatedNote._id), updatedNote);
 
   dispatch({ type: EDIT_NOTE, payload: res.data });
 };

@@ -39,6 +39,7 @@ module.exports = app => {
     const filter = {};
     filter["_id"] = _id;
     const update = req.body;
+    update.updated_at = Date.now();
 
     let updatedNote = await Note.findOneAndUpdate(filter, update, {
       new: true

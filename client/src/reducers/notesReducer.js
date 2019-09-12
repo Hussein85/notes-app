@@ -18,8 +18,9 @@ export default function(state = [], action) {
       });
     case EDIT_NOTE:
       const updatedNote = action.payload;
-      return state.map((note, id) => {
-        if (id !== updatedNote._id) {
+
+      const updatedNotes = state.map((note, id) => {
+        if (note._id !== updatedNote._id) {
           // This isn't the item we care about - keep it as-is
           return note;
         }
@@ -29,6 +30,8 @@ export default function(state = [], action) {
           ...updatedNote
         };
       });
+
+      return updatedNotes;
     default:
       return state;
   }
