@@ -54,7 +54,6 @@ class App extends Component {
         {/* Container */}
         <div className="flex overflow-hidden shadow-xl min-h-screen rounded-lg">
           <BrowserRouter>
-            <Sidebar />
             <Route exact path="/" component={NoteList} />
           </BrowserRouter>
           {/* 
