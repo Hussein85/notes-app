@@ -40,9 +40,6 @@ class Note extends Component {
     let current_dateTime = new Date(date);
     let formated_dateTime = current_dateTime.toLocaleDateString();
 
-    console.log("selectedNote: ", selectedNote);
-    console.log("note : ", note);
-
     return (
       <div>
         <div className="p-4">
@@ -51,7 +48,7 @@ class Note extends Component {
               onClick={this.onTitleClick}
               className={
                 "noteTitle focus:outline-none " +
-                (selectedNote._id === note._id ? "selectedNote" : "")
+                (selectedNote.body === note.body ? "selectedNote" : "")
               }
             >
               {note.title}

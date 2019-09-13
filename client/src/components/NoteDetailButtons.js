@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { addNote, editNote, setMode, setSelectedNote } from "../actions";
+import {
+  addNote,
+  editNote,
+  deleteNote,
+  setMode,
+  setSelectedNote
+} from "../actions";
 import { ADD_MODE, VIEW_MODE, EDIT_MODE } from "../actions/types";
 
 import { connect } from "react-redux";
@@ -22,6 +28,10 @@ class NoteDetailButtons extends Component {
     this.props.setMode(EDIT_MODE);
   };
 
+  onDelete = () => {
+    this.props.deleteNote(this.props.selectedNote);
+  };
+
   render() {
     const mode = this.props.mode;
     return (
@@ -35,7 +45,7 @@ class NoteDetailButtons extends Component {
         <button onClick={this.onEdit} className="focus:outline-none">
           <i className="ml-4 fas fa-pen text-gray-700 hover:text-green-400"></i>
         </button>
-        <button className="focus:outline-none">
+        <button onClick={this.onDelete} className="focus:outline-none">
           <i className="ml-4 far fa-trash-alt text-gray-700 hover:text-green-400"></i>
         </button>
         <button
@@ -61,5 +71,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { addNote, editNote, setMode, setSelectedNote }
+  { addNote, editNote, deleteNote, setMode, setSelectedNote }
 )(NoteDetailButtons);

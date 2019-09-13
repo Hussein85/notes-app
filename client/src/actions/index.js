@@ -25,14 +25,24 @@ export const addNote = note => async dispatch => {
   dispatch({ type: ADD_NOTE, payload: res.data });
 };
 
+/*
 export const deleteNote = _id => async dispatch => {
   const url = "/api/delete/";
   await axios.delete(url.concat(_id));
 
   dispatch({ type: DELETE_NOTE, payload: _id });
+};*/
+
+export const deleteNote = deletedNote => async dispatch => {
+  deletedNote.deleted_at = new Date();
+  let url = "/api/edit/";
+  const res = await axios.put(url.concat(deletedNote._id), deletedNote);
+
+  dispatch({ type: DELETE_NOTE, payload: deletedNote });
 };
 
 export const editNote = updatedNote => async dispatch => {
+  updatedNote.updated_at = new Date();
   let url = "/api/edit/";
   const res = await axios.put(url.concat(updatedNote._id), updatedNote);
 
