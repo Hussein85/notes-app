@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+//import { BrowserRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../actions";
 
@@ -53,9 +53,9 @@ class App extends Component {
       >
         {/* Container */}
         <div className="flex overflow-hidden shadow-xl min-h-screen rounded-lg">
-          <BrowserRouter>
-            <Route exact path="/" component={NoteList} />
-          </BrowserRouter>
+          <Sidebar />
+          <NoteList />
+          <NoteDetail />
           {/* 
           <div className="container">
           <BrowserRouter>
