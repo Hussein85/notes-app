@@ -38,7 +38,7 @@ export const deleteNote = deletedNote => async dispatch => {
   let url = "/api/edit/";
   const res = await axios.put(url.concat(deletedNote._id), deletedNote);
 
-  dispatch({ type: DELETE_NOTE, payload: deletedNote });
+  dispatch({ type: DELETE_NOTE, payload: res.data });
 };
 
 export const editNote = updatedNote => async dispatch => {

@@ -5,14 +5,7 @@ import {
   updateBody,
   resetSelectedNoteProperties
 } from "../actions";
-import {
-  ADD_MODE,
-  EDIT_MODE,
-  VIEW_MODE,
-  UPDATE_TITLE,
-  UPDATE_BODY,
-  RESET_SELECTED_NOTE_PROPERTIES
-} from "../actions/types";
+import { ADD_MODE, VIEW_MODE } from "../actions/types";
 
 import { connect } from "react-redux";
 import "./css/NoteDetail.css";

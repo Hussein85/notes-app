@@ -2,7 +2,6 @@ import React, { Component } from "react";
 //import { BrowserRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../actions";
-//import { VisibilityFilters } from "../actions";
 
 // import components
 //import Header from "./Header";
@@ -97,7 +96,13 @@ getVisibleTodos = (todos, filter) => {
 //  return { selectedNote: state.selectedNote };
 //}
 
+function mapStateToProps(state) {
+  return {
+    visibilityFilter: state.visibilityFilter
+  };
+}
+
 export default connect(
-  null,
+  mapStateToProps,
   actions
 )(App);

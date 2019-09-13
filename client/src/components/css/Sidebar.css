@@ -1,8 +1,8 @@
-.background {
+.background-gradient {
   background: linear-gradient(180deg, #f0fff4 0%, #9ae6b4 100%);
 }
 
-.box {
+.opacityBlur {
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
