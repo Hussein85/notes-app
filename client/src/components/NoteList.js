@@ -33,7 +33,9 @@ class NoteList extends Component {
       case SHOW_DELETED:
         return sortedNotes.filter(note => note.deleted_at);
       case SHOW_ALL:
-        return sortedNotes.filter(note => note.deleted_at === null);
+        return sortedNotes.filter(
+          note => note.deleted_at === null && note.archieved_at === null
+        );
       default:
         return sortedNotes;
     }
