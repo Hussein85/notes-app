@@ -4,7 +4,9 @@ import {
   editNote,
   deleteNote,
   setMode,
-  setSelectedNote
+  setSelectedNote,
+  archiveNote,
+  starNote
 } from "../actions";
 import { ADD_MODE, VIEW_MODE, EDIT_MODE } from "../actions/types";
 
@@ -32,14 +34,22 @@ class NoteDetailButtons extends Component {
     this.props.deleteNote(this.props.selectedNote);
   };
 
+  onArchieve = () => {
+    this.props.archiveNote(this.props.selectedNote);
+  };
+
+  onStarred = () => {
+    this.props.starNote(this.props.selectedNote);
+  };
+
   render() {
     const mode = this.props.mode;
     return (
       <div className="ml-4 flex mb-12 justify-end">
-        <button className="focus:outline-none">
+        <button onClick={this.onStarred} className="focus:outline-none">
           <i className="ml-4 far fa-star text-gray-700 hover:text-green-400"></i>
         </button>
-        <button className="focus:outline-none">
+        <button onClick={this.onArchieve} className="focus:outline-none">
           <i className="ml-4 far fa-folder text-gray-700 hover:text-green-400"></i>
         </button>
         <button onClick={this.onEdit} className="focus:outline-none">
@@ -71,5 +81,13 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { addNote, editNote, deleteNote, setMode, setSelectedNote }
+  {
+    addNote,
+    editNote,
+    deleteNote,
+    setMode,
+    setSelectedNote,
+    archiveNote,
+    starNote
+  }
 )(NoteDetailButtons);

@@ -14,6 +14,10 @@
   color: #48bb78;
 }
 
+.icon:focus {
+  outline: 0;
+}
+
 .test:hover div {
   color: #48bb78;
 }

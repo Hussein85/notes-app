@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+//import { BrowserRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../actions";
 
@@ -8,7 +8,6 @@ import * as actions from "../actions";
 import Sidebar from "./Sidebar";
 import NoteList from "./NoteList";
 import NoteDetail from "./NoteDetail";
-import Header from "./Header";
 
 import Image from "../img/background.jpg";
 
@@ -48,12 +47,15 @@ class App extends Component {
 
   render() {
     return (
-      <div className="">
-        <BrowserRouter>
-          <div>
-            <Header />
-          </div>
-        </BrowserRouter>
+      <div
+        className="bg-image bg-gray-100 py-16 px-24"
+        style={styles.container}
+      >
+        <div className="flex overflow-hidden shadow-xl min-h-screen rounded-lg">
+          <Sidebar />
+          <NoteList />
+          <NoteDetail />
+        </div>
       </div>
     );
   }

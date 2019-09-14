@@ -58,7 +58,7 @@
 }
 
 .selectedNote {
-  @apply text-green-500;
+  @apply text-green-500 text-sm;
 }
 
 .noteDate {
@@ -74,7 +74,7 @@
 }
 
 .sidebarContainer {
-  @apply flex-none flex-initial opacity-75 rounded-l-lg;
+  @apply flex-none opacity-75 rounded-l-lg;
 }
 
 .menuTitleText {

@@ -10,6 +10,7 @@ const initialState = {
   title: "",
   created_at: new Date(),
   updated_at: new Date(),
+  archieved_at: "",
   deleted_at: "",
   starred: false,
   body: ""

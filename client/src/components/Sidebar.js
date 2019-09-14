@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { deleteNote, editNote } from "../actions";
+import { deleteNote, editNote, setVisibilityFilter } from "../actions";
 import {
   SHOW_ALL,
   SHOW_STARRED,
@@ -9,56 +9,59 @@ import {
 import { connect } from "react-redux";
 import "./css/Sidebar.css";
 
+const icons = [
+  { title: "My notes", icon: "far fa-sticky-note fa-lg", filter: SHOW_ALL },
+  { title: "Starred", icon: "far fa-star fa-lg", filter: SHOW_STARRED },
+  { title: "Archived", icon: "far fa-folder fa-lg", filter: SHOW_ARCHIEVED },
+  { title: "Deleted", icon: "far fa-trash-alt fa-lg", filter: SHOW_DELETED }
+];
+
 class Sidebar extends Component {
-  render() {
+  getClass(filter, classTrue, classFalse) {
     const visibilityFilter = this.props.visibilityFilter;
-    console.log("filter: ", visibilityFilter);
+    return visibilityFilter === filter ? classTrue : classFalse;
+  }
+
+  render() {
     return (
       <div className="sidebarContainer background-gradient opacityBlur pt-8">
-        <div
-          className={
-            "pl-4 mb-4 mr-16 " +
-            (visibilityFilter === SHOW_ALL ? "selectedMenuTitle" : "")
-          }
-        >
-          <a href="#" className="icon menuTitleText">
-            <i className="far fa-sticky-note fa-lg iconText"></i>
-            <span className="ml-2">My notes</span>
-          </a>
-        </div>
-        <div
-          className={
-            "pl-4 mb-4 mr-16 " +
-            (visibilityFilter === SHOW_STARRED ? "selectedMenuTitle" : "")
-          }
-        >
-          <a href="#" className="icon menuTitleText">
-            <i className="far fa-star fa-lg iconText"></i>
-            <span className="ml-2">Starred</span>
-          </a>
-        </div>
-        <div
-          className={
-            "pl-4 mb-4 mr-16 " +
-            (visibilityFilter === SHOW_ARCHIEVED ? "selectedMenuTitle" : "")
-          }
-        >
-          <a href="#" className="icon menuTitleText">
-            <i className="far fa-folder fa-lg iconText"></i>
-            <span className="ml-2">Archived</span>
-          </a>
-        </div>
-        <div
-          className={
-            "pl-4 mb-4 mr-16 " +
-            (visibilityFilter === SHOW_DELETED ? "selectedMenuTitle" : "")
-          }
-        >
-          <a href="#" className="icon menuTitleText">
-            <i className="far fa-trash-alt fa-lg iconText"></i>
-            <span className="ml-2">Deleted</span>
-          </a>
-        </div>
+        {icons.map((icon, id) => {
+          return (
+            <div
+              key={id}
+              className={
+                "pl-4 mb-4 mr-16 " +
+                this.getClass(icon.filter, "selectedMenuTitle", "")
+              }
+            >
+              <button
+                onClick={() => {
+                  this.props.setVisibilityFilter(icon.filter);
+                }}
+                className={
+                  "icon outline-none " +
+                  this.getClass(
+                    icon.filter,
+                    "selectedMenuTitleText",
+                    "menuTitleText"
+                  )
+                }
+              >
+                <i
+                  className={
+                    icon.icon +
+                    this.getClass(
+                      icon.filter,
+                      " selectedMenuTitleText",
+                      " iconText"
+                    )
+                  }
+                ></i>
+                <span className="ml-2 ">{icon.title}</span>
+              </button>
+            </div>
+          );
+        })}
       </div>
     );
   }
@@ -72,5 +75,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { deleteNote, editNote }
+  { deleteNote, editNote, setVisibilityFilter }
 )(Sidebar);

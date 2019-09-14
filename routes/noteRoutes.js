@@ -17,7 +17,9 @@ module.exports = app => {
       body: req.body.body,
       created_at: Date.now(),
       updated_at: Date.now(),
-      deleted_at: ""
+      deleted_at: "",
+      archieved_at: "",
+      starred: false
     });
 
     await note.save((err, note) => {

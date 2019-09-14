@@ -3,6 +3,12 @@ import SearchBar from "./SearchBar";
 import Note from "./Note";
 import AddButton from "./AddButton";
 
+import {
+  SHOW_ALL,
+  SHOW_STARRED,
+  SHOW_DELETED,
+  SHOW_ARCHIEVED
+} from "../actions/types";
 import { connect } from "react-redux";
 
 import "./css/NoteList.css";
@@ -12,19 +18,31 @@ class NoteList extends Component {
     console.log("search term: ", term);
   };
 
-  getVisibleNotes(notes) {
-    // TODO: Implement visibilty filters
-    //const visibilityFilter = // get from store
+  getVisibleNotes = notes => {
+    const visibilityFilter = this.props.visibilityFilter;
 
-    return notes.sort((a, b) => {
+    const sortedNotes = notes.sort((a, b) => {
       return new Date(b.updated_at) - new Date(a.updated_at);
     });
-  }
+
+    switch (visibilityFilter) {
+      case SHOW_ARCHIEVED:
+        return sortedNotes.filter(note => note.archieved_at);
+      case SHOW_STARRED:
+        return sortedNotes.filter(note => note.starred);
+      case SHOW_DELETED:
+        return sortedNotes.filter(note => note.deleted_at);
+      case SHOW_ALL:
+        return sortedNotes.filter(note => note.deleted_at === null);
+      default:
+        return sortedNotes;
+    }
+  };
 
   renderNoteList() {
     const { notes } = this.props;
     const visibleNotes = this.getVisibleNotes(notes);
-
+    console.log("visibilty note:", visibleNotes);
     return (
       visibleNotes &&
       visibleNotes.map(note => {
@@ -63,7 +81,8 @@ class NoteList extends Component {
 
 function mapStateToProps(state) {
   return {
-    notes: state.notes
+    notes: state.notes,
+    visibilityFilter: state.visibilityFilter
   };
 }
 

@@ -696,6 +696,7 @@ video {
 
 .selectedNote {
   color: #48bb78;
+  font-size: 0.875rem;
 }
 
 .noteDate {
@@ -735,7 +736,6 @@ video {
 
 .sidebarContainer {
   flex: none;
-  flex: 0 1 auto;
   opacity: 0.75;
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
