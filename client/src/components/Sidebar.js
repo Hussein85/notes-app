@@ -16,6 +16,10 @@ const icons = [
   { title: "Deleted", icon: "far fa-trash-alt fa-lg", filter: SHOW_DELETED }
 ];
 
+let menuButtonsAdjust = {
+  marginLeft: "2px"
+};
+
 class Sidebar extends Component {
   getClass(filter, classTrue, classFalse) {
     const visibilityFilter = this.props.visibilityFilter;
@@ -23,12 +27,14 @@ class Sidebar extends Component {
   }
 
   render() {
+    const visibilityFilter = this.props.visibilityFilter;
     return (
       <div className="sidebarContainer background-gradient opacityBlur pt-8">
         {icons.map((icon, id) => {
           return (
             <div
               key={id}
+              style={visibilityFilter === icon.filter ? {} : menuButtonsAdjust}
               className={
                 "pl-4 mb-4 mr-16 " +
                 this.getClass(icon.filter, "selectedMenuTitle", "")
