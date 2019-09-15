@@ -46,8 +46,8 @@ export const deleteNote = note => async dispatch => {
   dispatch({ type: DELETE_NOTE, payload: res.data });
 };
 
-export const archiveNote = note => async dispatch => {
-  note.archieved_at = new Date();
+export const archiveNote = (note, archieved_at) => async dispatch => {
+  note.archieved_at = archieved_at;
   let url = "/api/edit/";
   const res = await axios.put(url.concat(note._id), note);
 

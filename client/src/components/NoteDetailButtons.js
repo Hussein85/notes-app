@@ -36,7 +36,7 @@ class NoteDetailButtons extends Component {
   };
 
   onArchieve = () => {
-    this.props.archiveNote(this.props.selectedNote);
+    this.props.archiveNote(this.props.selectedNote, new Date());
   };
 
   onStarred = () => {
@@ -72,7 +72,16 @@ class NoteDetailButtons extends Component {
           ></i>
         </button>
         <button onClick={this.onArchieve} className="focus:outline-none">
-          <i className="ml-4 far fa-folder text-gray-700 hover:text-green-400"></i>
+          <i
+            className={
+              "ml-4 far fa-folder text-gray-700 hover:text-green-400" +
+              this.getClass(
+                this.props.selectedNote.archieved_at,
+                "far fa-folder fa_folder-yellow",
+                "far fa-folder"
+              )
+            }
+          ></i>
         </button>
         <button onClick={this.onEdit} className="focus:outline-none">
           <i className="ml-4 fas fa-pen text-gray-700 hover:text-green-400"></i>
