@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 import "./css/Sidebar.css";
 
 const icons = [
-  { title: "My notes", icon: "far fa-sticky-note fa-lg", filter: SHOW_ALL },
+  { title: "My notesss", icon: "far fa-sticky-note fa-lg", filter: SHOW_ALL },
   { title: "Starred", icon: "far fa-star fa-lg", filter: SHOW_STARRED },
   { title: "Archived", icon: "far fa-folder fa-lg", filter: SHOW_ARCHIEVED },
   { title: "Deleted", icon: "far fa-trash-alt fa-lg", filter: SHOW_DELETED }
