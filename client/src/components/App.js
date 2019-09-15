@@ -48,10 +48,10 @@ class App extends Component {
   render() {
     return (
       <div
-        className="bg-image bg-gray-100 py-16 px-24"
+        className="bg-image bg-gray-100 px-48 py-16 h-screen "
         style={styles.container}
       >
-        <div className="flex overflow-hidden shadow-xl min-h-screen rounded-lg">
+        <div className="flex overflow-hidden shadow-xl h-full rounded-lg">
           <Sidebar />
           <NoteList />
           <NoteDetail />
