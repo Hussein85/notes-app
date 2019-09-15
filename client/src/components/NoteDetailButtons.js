@@ -53,7 +53,7 @@ class NoteDetailButtons extends Component {
     const mode = this.props.mode;
 
     return (
-      <div className="ml-4 flex mb-12 justify-end">
+      <div className="ml-4 flex mb-8 justify-end">
         <button
           onClick={() => {
             this.onStarred();
@@ -62,11 +62,11 @@ class NoteDetailButtons extends Component {
         >
           <i
             className={
-              "ml-4 text-gray-700 hover:text-green-400 " +
+              "ml-4 text-gray-700 hover:text-yellow-400 " +
               this.getClass(
                 this.props.selectedNote.starred,
                 "fas fa-star fa_star-yellow",
-                "far fa-star"
+                "fas fa-star"
               )
             }
           ></i>
@@ -74,11 +74,11 @@ class NoteDetailButtons extends Component {
         <button onClick={this.onArchieve} className="focus:outline-none">
           <i
             className={
-              "ml-4 far fa-folder text-gray-700 hover:text-green-400" +
+              "ml-4 far fa-folder text-gray-700 hover:text-blue-500 " +
               this.getClass(
                 this.props.selectedNote.archieved_at,
-                "far fa-folder fa_folder-yellow",
-                "far fa-folder"
+                "fas fa-folder fa_folder-yellow",
+                "fas fa-folder"
               )
             }
           ></i>
@@ -87,7 +87,7 @@ class NoteDetailButtons extends Component {
           <i className="ml-4 fas fa-pen text-gray-700 hover:text-green-400"></i>
         </button>
         <button onClick={this.onDelete} className="focus:outline-none">
-          <i className="ml-4 far fa-trash-alt text-gray-700 hover:text-green-400"></i>
+          <i className="ml-4 fas fa-trash-alt text-gray-700 hover:text-red-600"></i>
         </button>
         <button
           onClick={this.onConfirm}
@@ -96,7 +96,7 @@ class NoteDetailButtons extends Component {
           }}
           className="focus:outline-none"
         >
-          <i className="ml-4 far fa-check-circle text-gray-700 hover:text-green-400"></i>
+          <i className="ml-4 fas fa-check-circle text-gray-700 hover:text-green-400"></i>
         </button>
       </div>
     );

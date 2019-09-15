@@ -68,7 +68,7 @@ class NoteDetail extends Component {
 
   render() {
     return (
-      <div className="bg-white flex-auto flex flex-col px-16 pt-24 justify-between">
+      <div className="bg-white flex-auto flex flex-col px-16 pt-10 justify-between">
         {this.renderNoteDetail()}
 
         <NoteDetailButtons />
