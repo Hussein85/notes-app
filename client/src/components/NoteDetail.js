@@ -12,12 +12,6 @@ import "./css/NoteDetail.css";
 import NoteDetailButtons from "./NoteDetailButtons";
 
 class NoteDetail extends Component {
-  state = {
-    title: "",
-    body: "",
-    starred: false
-  };
-
   componentDidMount() {
     if (this.props.mode === ADD_MODE) {
       this.props.resetSelectedNoteProperties();
@@ -26,19 +20,10 @@ class NoteDetail extends Component {
 
   onTitleChange = e => {
     this.props.updateTitle(e.target.value);
-    /*this.setState({
-      title: e.target.value
-    });
-    */
   };
 
   onBodyChange = e => {
     this.props.updateBody(e.target.value);
-
-    /*this.setState({
-      body: e.target.value
-    });
-    */
   };
 
   renderNoteDetail() {

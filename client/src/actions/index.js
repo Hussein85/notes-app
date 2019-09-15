@@ -82,6 +82,10 @@ export const updateBody = body => dispatch => {
   dispatch({ type: UPDATE_BODY, payload: body });
 };
 
+export const updateStarred = bool => dispatch => {
+  dispatch({ type: STAR_NOTE, payload: bool });
+};
+
 export const resetSelectedNoteProperties = () => dispatch => {
   dispatch({ type: RESET_SELECTED_NOTE_PROPERTIES, payload: "" });
 };

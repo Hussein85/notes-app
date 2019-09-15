@@ -44,7 +44,7 @@ class NoteList extends Component {
   renderNoteList() {
     const { notes } = this.props;
     const visibleNotes = this.getVisibleNotes(notes);
-    console.log("visibilty note:", visibleNotes);
+
     return (
       visibleNotes &&
       visibleNotes.map(note => {

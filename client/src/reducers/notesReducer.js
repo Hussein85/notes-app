@@ -3,8 +3,8 @@ import {
   ADD_NOTE,
   DELETE_NOTE,
   EDIT_NOTE,
-  ARCHIVE_NOTE,
-  STAR_NOTE
+  ARCHIVE_NOTE
+  //STAR_NOTE
 } from "../actions/types";
 
 const updateNote = (state, updatedNote, property) => {

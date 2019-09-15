@@ -3,7 +3,8 @@ import {
   UPDATE_BODY,
   UPDATE_TITLE,
   DELETE_NOTE,
-  RESET_SELECTED_NOTE_PROPERTIES
+  RESET_SELECTED_NOTE_PROPERTIES,
+  STAR_NOTE
 } from "../actions/types";
 
 const initialState = {
@@ -26,6 +27,8 @@ export default function(state = initialState, action) {
       return { ...state, body: action.payload };
     case UPDATE_TITLE:
       return { ...state, title: action.payload };
+    case STAR_NOTE:
+      return { ...state, starred: action.payload };
     case DELETE_NOTE:
       return action.payload;
     default:

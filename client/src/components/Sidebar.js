@@ -42,6 +42,10 @@ class Sidebar extends Component {
             >
               <button
                 onClick={() => {
+                  console.log(
+                    "visibilty filter: ",
+                    this.props.visibilityFilter
+                  );
                   this.props.setVisibilityFilter(icon.filter);
                 }}
                 className={

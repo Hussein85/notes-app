@@ -7,6 +7,7 @@ export const STAR_NOTE = "star_note";
 export const SET_SELECTED_NOTE = "set_selected_note";
 export const UPDATE_TITLE = "update_title";
 export const UPDATE_BODY = "update_body";
+export const UPDATE_STARRED = "update_starred";
 export const RESET_SELECTED_NOTE_PROPERTIES = "reset_note_properties";
 export const SET_VISIBILITY_FILTER = "set_visibility_filter";
 export const SHOW_ALL = "show_all";

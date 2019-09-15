@@ -6,9 +6,10 @@ import {
   setMode,
   setSelectedNote,
   archiveNote,
-  starNote
+  updateStarred
 } from "../actions";
 import { ADD_MODE, VIEW_MODE, EDIT_MODE } from "../actions/types";
+import "./css/NoteDetailButtons.css";
 
 import { connect } from "react-redux";
 
@@ -39,15 +40,36 @@ class NoteDetailButtons extends Component {
   };
 
   onStarred = () => {
-    this.props.starNote(this.props.selectedNote);
+    this.props.selectedNote.starred = this.props.selectedNote.starred === false;
+    this.props.updateStarred(this.props.selectedNote.starred);
+    this.props.editNote(this.props.selectedNote);
+  };
+
+  getClass = (property, trueClass, falseClass) => {
+    return property ? trueClass : falseClass;
   };
 
   render() {
     const mode = this.props.mode;
+
     return (
       <div className="ml-4 flex mb-12 justify-end">
-        <button onClick={this.onStarred} className="focus:outline-none">
-          <i className="ml-4 far fa-star text-gray-700 hover:text-green-400"></i>
+        <button
+          onClick={() => {
+            this.onStarred();
+          }}
+          className="focus:outline-none"
+        >
+          <i
+            className={
+              "ml-4 text-gray-700 hover:text-green-400 " +
+              this.getClass(
+                this.props.selectedNote.starred,
+                "fas fa-star fa_star-yellow",
+                "far fa-star"
+              )
+            }
+          ></i>
         </button>
         <button onClick={this.onArchieve} className="focus:outline-none">
           <i className="ml-4 far fa-folder text-gray-700 hover:text-green-400"></i>
@@ -88,6 +110,6 @@ export default connect(
     setMode,
     setSelectedNote,
     archiveNote,
-    starNote
+    updateStarred
   }
 )(NoteDetailButtons);
