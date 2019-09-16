@@ -11,6 +11,7 @@ class AddButton extends Component {
 
   renderButton() {
     const mode = this.props.mode;
+    console.log("mode", mode);
 
     if (mode === ADD_MODE) {
       return <button className="buttonDisabled">Add a note</button>;
