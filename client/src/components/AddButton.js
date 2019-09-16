@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ADD_MODE } from "../actions/types";
+import { ADD_MODE, SHOW_ALL } from "../actions/types";
 import { setMode, resetSelectedNoteProperties } from "../actions";
 import { connect } from "react-redux";
 
@@ -11,10 +11,10 @@ class AddButton extends Component {
 
   renderButton() {
     const mode = this.props.mode;
-    console.log("mode", mode);
+    const visibilityFilter = this.props.visibilityFilter;
 
-    if (mode === ADD_MODE) {
-      return <button className="buttonDisabled">Add a note</button>;
+    if (mode === ADD_MODE || visibilityFilter !== SHOW_ALL) {
+      return <button className="hidden">Add a note</button>;
     } else {
       return (
         <button onClick={this.onAddButtonClick} className="btn2 btn2-green">
@@ -33,7 +33,8 @@ class AddButton extends Component {
 
 function mapStateToProps(state) {
   return {
-    mode: state.mode
+    mode: state.mode,
+    visibilityFilter: state.visibilityFilter
   };
 }
 

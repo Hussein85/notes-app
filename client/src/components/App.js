@@ -8,6 +8,7 @@ import * as actions from "../actions";
 import Sidebar from "./Sidebar";
 import NoteList from "./NoteList";
 import NoteDetail from "./NoteDetail";
+import "./css/App.css";
 
 import Image from "../img/img2.jpg";
 
