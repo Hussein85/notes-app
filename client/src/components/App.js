@@ -9,7 +9,7 @@ import Sidebar from "./Sidebar";
 import NoteList from "./NoteList";
 import NoteDetail from "./NoteDetail";
 
-import Image from "../img/background.jpg";
+import Image from "../img/img2.jpg";
 
 const styles = {
   container: {
@@ -48,7 +48,7 @@ class App extends Component {
   render() {
     return (
       <div
-        className="bg-image bg-gray-100 px-48 py-16 h-screen "
+        className="bg-image bg-gray-100 px-56 py-20 h-screen "
         style={styles.container}
       >
         <div className="flex overflow-hidden shadow-xl h-full rounded-lg">
