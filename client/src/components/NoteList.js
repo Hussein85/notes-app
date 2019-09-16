@@ -69,7 +69,7 @@ class NoteList extends Component {
   render() {
     return (
       <div>
-        <div className="bg-green-100 flex w-64 h-full flex-col justify-between">
+        <div className="bg-custom-lighterBlue flex w-64 h-full flex-col justify-between">
           <div>
             <SearchBar onSubmit={this.onSearchSubmit} />
 

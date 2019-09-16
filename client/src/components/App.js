@@ -22,6 +22,15 @@ const styles = {
 
 class App extends Component {
   /*
+  package.json
+  "start": "react-scripts start",
+  "build": "react-scripts build",
+
+
+  "build:css": "postcss src/tailwind.css -o public/build/tailwind.css",
+  "start": "npm run build:css && react-scripts start",
+  "build": "npm run build:css && react-scripts build",
+
   state = {
     selectedNote: {
       title: "Title 1",
@@ -49,7 +58,7 @@ class App extends Component {
   render() {
     return (
       <div
-        className="bg-image bg-gray-100 px-56 py-20 h-screen "
+        className="bg-image bg-gray-100 px-56 py-20 xl:px-64 xl:py-32 h-screen "
         style={styles.container}
       >
         <div className="flex overflow-hidden shadow-xl h-full rounded-lg">

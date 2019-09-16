@@ -38,15 +38,15 @@
 }
 
 .btn2-green {
-  @apply bg-green-500 text-white;
+  @apply bg-custom-blue text-white;
 }
 
 .btn2-green:hover {
-  @apply bg-green-400;
+  @apply bg-custom-darkerBlue;
 }
 
 .btn2-green:active {
-  @apply bg-green-500;
+  @apply bg-blue-500;
 }
 
 .noteTitle {
@@ -54,23 +54,23 @@
 }
 
 .noteTitle:hover {
-  @apply text-green-500;
+  @apply text-custom-darkerBlue;
 }
 
 .selectedNote {
-  @apply text-green-500 text-sm;
+  @apply text-custom-darkerBlue text-sm;
 }
 
 .noteDate {
-  @apply text-gray-400 text-xs font-medium;
+  @apply text-gray-700 text-xs font-medium;
 }
 
 .noteTruncatedBody {
-  @apply text-gray-400 text-xs font-medium truncate;
+  @apply text-gray-700 text-xs font-medium truncate;
 }
 
 .buttonDisabled {
-  @apply w-56 bg-green-500 text-white opacity-50 inline-block text-center px-5 py-3 rounded-lg shadow-lg text-xs uppercase tracking-wider font-semibold cursor-not-allowed;
+  @apply w-56 bg-blue-500 text-white opacity-50 inline-block text-center px-5 py-3 rounded-lg shadow-lg text-xs uppercase tracking-wider font-semibold cursor-not-allowed;
 }
 
 .sidebarContainer {
@@ -82,11 +82,11 @@
 }
 
 .selectedMenuTitleText {
-  @apply text-xs text-green-500 font-bold;
+  @apply text-xs text-custom-darkerBlue font-bold;
 }
 
 .selectedMenuTitle {
-  @apply border-l-2 border-green-500;
+  @apply border-l-4 border-custom-darkerBlue;
 }
 
 .iconText {

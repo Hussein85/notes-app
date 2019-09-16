@@ -42,17 +42,22 @@ class Note extends Component {
 
     return (
       <div>
-        <div className="p-4">
+        <div
+          onClick={this.onTitleClick}
+          className={
+            "p-4 cursor-pointer " +
+            (selectedNote.body === note.body ? "bg-custom-selectedBlue" : "")
+          }
+        >
           <div className="flex justify-between">
-            <button
-              onClick={this.onTitleClick}
+            <div
               className={
                 "noteTitle focus:outline-none " +
                 (selectedNote.body === note.body ? "selectedNote" : "")
               }
             >
               {note.title}
-            </button>
+            </div>
             <div className="noteDate">{formated_dateTime}</div>
           </div>
           <p className="noteTruncatedBody">{note.body}</p>

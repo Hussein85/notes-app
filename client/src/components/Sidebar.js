@@ -17,7 +17,7 @@ const icons = [
 ];
 
 let menuButtonsAdjust = {
-  marginLeft: "2px"
+  marginLeft: "4px"
 };
 
 class Sidebar extends Component {

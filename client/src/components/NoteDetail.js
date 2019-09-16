@@ -31,7 +31,7 @@ class NoteDetail extends Component {
     if (mode === VIEW_MODE) {
       return (
         <div>
-          <div className="tracking-wider text-green-500 font-bold text-2xl">
+          <div className="tracking-wider text-custom-blue font-bold text-2xl">
             {this.props.selectedNote.title}
           </div>
           <p className="text-sm font-medium text-gray-600 mt-4">
@@ -45,7 +45,7 @@ class NoteDetail extends Component {
           <div>
             <input
               autoFocus
-              className="focus:outline-none font-bold text-2xl text-green-500 tracking-wider"
+              className="focus:outline-none font-bold text-2xl text-custom-blue tracking-wider"
               placeholder="Enter a title"
               type="text"
               onChange={this.onTitleChange}
