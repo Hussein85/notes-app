@@ -6,6 +6,7 @@ import {
   EDIT_NOTE,
   SET_SELECTED_NOTE,
   SET_VISIBILITY_FILTER,
+  SET_SEARCH_TERM,
   SET_MODE,
   UPDATE_TITLE,
   UPDATE_BODY,
@@ -96,4 +97,8 @@ export const setVisibilityFilter = filter => dispatch => {
 
 export const setMode = mode => dispatch => {
   dispatch({ type: SET_MODE, payload: mode });
+};
+
+export const setSearchTerm = term => dispatch => {
+  dispatch({ type: SET_SEARCH_TERM, payload: term });
 };

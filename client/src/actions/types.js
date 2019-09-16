@@ -10,6 +10,7 @@ export const UPDATE_BODY = "update_body";
 export const UPDATE_STARRED = "update_starred";
 export const RESET_SELECTED_NOTE_PROPERTIES = "reset_note_properties";
 export const SET_VISIBILITY_FILTER = "set_visibility_filter";
+export const SET_SEARCH_TERM = "set_search_term";
 export const SHOW_ALL = "show_all";
 export const SHOW_STARRED = "show_starred";
 export const SHOW_ARCHIEVED = "show_archieved";

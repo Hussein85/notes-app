@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { setSearchTerm } from "../actions";
+import { connect } from "react-redux";
 
 class SearchBar extends Component {
   state = {
@@ -9,10 +11,15 @@ class SearchBar extends Component {
     this.setState({
       searchTerm: e.target.value
     });
+    this.props.setSearchTerm(e.target.value);
   };
 
   onSubmit = e => {
     e.preventDefault();
+
+    this.props.setSearchTerm(this.props.searchTerm);
+
+    // TODO remove later since it is stored in the store
     // this.props.addNote(this.state.searchTerm);
     this.props.onSubmit(this.state.searchTerm);
     this.setState({
@@ -50,4 +57,13 @@ class SearchBar extends Component {
   }
 }
 
-export default SearchBar;
+function mapStateToProps(state) {
+  return {
+    searchTerm: state.searchTerm
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  { setSearchTerm }
+)(SearchBar);

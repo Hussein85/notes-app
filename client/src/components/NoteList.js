@@ -41,13 +41,26 @@ class NoteList extends Component {
     }
   };
 
+  searchedNotes = (notes, searchTerm) => {
+    if (searchTerm === "") {
+      return notes;
+    } else {
+      return notes.filter(note => {
+        return note.title.toLowerCase().includes(searchTerm.toLowerCase());
+      });
+    }
+  };
+
   renderNoteList() {
     const { notes } = this.props;
     const visibleNotes = this.getVisibleNotes(notes);
 
+    const searchTerm = this.props.searchTerm;
+    const filteredNotes = this.searchedNotes(visibleNotes, searchTerm);
+
     return (
-      visibleNotes &&
-      visibleNotes.map(note => {
+      filteredNotes &&
+      filteredNotes.map(note => {
         return <Note key={note._id} note={note} />;
       })
     );
@@ -84,7 +97,8 @@ class NoteList extends Component {
 function mapStateToProps(state) {
   return {
     notes: state.notes,
-    visibilityFilter: state.visibilityFilter
+    visibilityFilter: state.visibilityFilter,
+    searchTerm: state.searchTerm
   };
 }
 
