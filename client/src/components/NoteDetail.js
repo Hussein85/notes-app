@@ -3,7 +3,9 @@ import {
   setSelectedNote,
   updateTitle,
   updateBody,
-  resetSelectedNoteProperties
+  resetSelectedNoteProperties,
+  editNote,
+  setMode
 } from "../actions";
 import { ADD_MODE, VIEW_MODE } from "../actions/types";
 
@@ -18,6 +20,12 @@ class NoteDetail extends Component {
     }
   }
 
+  onSave = () => {
+    const mode = this.props.mode;
+    this.props.setMode(VIEW_MODE);
+    this.props.editNote(this.props.selectedNote);
+  };
+
   onTitleChange = e => {
     this.props.updateTitle(e.target.value);
   };
@@ -30,7 +38,7 @@ class NoteDetail extends Component {
     const mode = this.props.mode;
     if (mode === VIEW_MODE) {
       return (
-        <div>
+        <div className>
           <div className="tracking-wider text-custom-blue font-bold text-2xl">
             {this.props.selectedNote.title}
           </div>
@@ -42,6 +50,14 @@ class NoteDetail extends Component {
     } else {
       return (
         <div>
+          <button
+            onClick={() => {
+              this.onSave();
+            }}
+            className="float-right btn bg-orange-500 text-white"
+          >
+            Save
+          </button>
           <div>
             <input
               autoFocus
@@ -86,5 +102,12 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { setSelectedNote, updateTitle, updateBody, resetSelectedNoteProperties }
+  {
+    setSelectedNote,
+    updateTitle,
+    updateBody,
+    resetSelectedNoteProperties,
+    setMode,
+    editNote
+  }
 )(NoteDetail);

@@ -93,10 +93,22 @@ class NoteDetailButtons extends Component {
             }
           ></i>
         </button>
-        <button onClick={this.onEdit} className="focus:outline-none">
+        <button
+          onClick={this.onEdit}
+          style={{
+            display: mode === EDIT_MODE ? "none" : ""
+          }}
+          className="focus:outline-none"
+        >
           <i className="ml-4 fas fa-pen text-gray-700 hover:text-green-400"></i>
         </button>
-        <button onClick={this.onDelete} className="focus:outline-none">
+        <button
+          onClick={this.onDelete}
+          style={{
+            display: mode === EDIT_MODE ? "none" : ""
+          }}
+          className="focus:outline-none"
+        >
           <i className="ml-4 fas fa-trash-alt text-gray-700 hover:text-red-600"></i>
         </button>
         <button
