@@ -9,6 +9,9 @@ import {
   SHOW_DELETED,
   SHOW_ARCHIEVED
 } from "../actions/types";
+
+import { setSelectedNote } from "../actions";
+
 import { connect } from "react-redux";
 
 import "./css/NoteList.css";
@@ -54,6 +57,9 @@ class NoteList extends Component {
   renderNoteList() {
     const { notes } = this.props;
     const visibleNotes = this.getVisibleNotes(notes);
+    if (visibleNotes.length) {
+      this.props.setSelectedNote(visibleNotes[0]);
+    }
 
     const searchTerm = this.props.searchTerm;
     const filteredNotes = this.searchedNotes(visibleNotes, searchTerm);
@@ -102,4 +108,9 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(NoteList);
+export default connect(
+  mapStateToProps,
+  {
+    setSelectedNote
+  }
+)(NoteList);

@@ -8,7 +8,7 @@ import {
 } from "../actions/types";
 
 const updateNote = (state, updatedNote, property) => {
-  const updatedNotes = state.map((note, id) => {
+  return state.map((note, id) => {
     if (note[property] !== updatedNote[property]) {
       return note;
     }
@@ -17,7 +17,6 @@ const updateNote = (state, updatedNote, property) => {
       ...updatedNote
     };
   });
-  return updatedNotes;
 };
 
 export default function(state = [], action) {
@@ -35,12 +34,15 @@ export default function(state = [], action) {
     case EDIT_NOTE:
       const updatedNote = action.payload;
 
-      return updateNote(state, updatedNote, "_id");
-
-    case ARCHIVE_NOTE:
-      const archievedNote = action.payload;
-
-      return updateNote(state, archievedNote, "archieved_at");
+      return state.map((note, id) => {
+        if (note._id !== updatedNote._id) {
+          return note;
+        }
+        return {
+          ...note,
+          ...updatedNote
+        };
+      });
 
     default:
       return state;

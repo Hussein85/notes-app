@@ -19,10 +19,11 @@ export const fetchNotes = () => async dispatch => {
   const res = await axios.get("/api/notes");
 
   dispatch({ type: FETCH_NOTES, payload: res.data });
-
+  /*
   if (res.data.length > 0) {
     dispatch({ type: SET_SELECTED_NOTE, payload: res.data[0] });
   }
+  */
 };
 
 export const addNote = note => async dispatch => {
@@ -91,14 +92,17 @@ export const resetSelectedNoteProperties = () => dispatch => {
   dispatch({ type: RESET_SELECTED_NOTE_PROPERTIES, payload: "" });
 };
 
+// VISIBILITY MODE
 export const setVisibilityFilter = filter => dispatch => {
   dispatch({ type: SET_VISIBILITY_FILTER, payload: filter });
 };
 
+// MODE
 export const setMode = mode => dispatch => {
   dispatch({ type: SET_MODE, payload: mode });
 };
 
+// SEARCH TERM
 export const setSearchTerm = term => dispatch => {
   dispatch({ type: SET_SEARCH_TERM, payload: term });
 };
