@@ -59,6 +59,8 @@ class NoteList extends Component {
     const visibleNotes = this.getVisibleNotes(notes);
     if (visibleNotes.length) {
       this.props.setSelectedNote(visibleNotes[0]);
+    } else {
+      this.props.setSelectedNote({});
     }
 
     const searchTerm = this.props.searchTerm;
