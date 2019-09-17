@@ -50,7 +50,10 @@ class NoteDetail extends Component {
           <div className="tracking-wider text-custom-blue font-bold text-2xl">
             {this.props.selectedNote.title}
           </div>
-          <p className="text-sm font-medium text-gray-600 mt-4">
+          <p
+            style={{ "white-space": "pre-wrap" }}
+            className="text-sm font-medium text-gray-600 mt-4"
+          >
             {this.props.selectedNote.body}
           </p>
         </div>
