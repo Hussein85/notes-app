@@ -19,3 +19,4 @@ export const SET_MODE = "set_mode";
 export const ADD_MODE = "add_mode";
 export const EDIT_MODE = "edit_mode";
 export const VIEW_MODE = "view_mode";
+export const UPDATE_SELECTED_NOTE = "update_selected_note";

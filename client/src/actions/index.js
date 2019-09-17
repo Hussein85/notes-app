@@ -12,24 +12,29 @@ import {
   UPDATE_BODY,
   RESET_SELECTED_NOTE_PROPERTIES,
   ARCHIVE_NOTE,
-  STAR_NOTE
+  STAR_NOTE,
+  UPDATE_SELECTED_NOTE
 } from "./types";
+
+// NOTES REDUCER
+export const addNote = note => async dispatch => {
+  const res = await axios.post("/api/notes", note);
+
+  dispatch({ type: ADD_NOTE, payload: res.data });
+};
 
 export const fetchNotes = () => async dispatch => {
   const res = await axios.get("/api/notes");
 
   dispatch({ type: FETCH_NOTES, payload: res.data });
-  /*
-  if (res.data.length > 0) {
-    dispatch({ type: SET_SELECTED_NOTE, payload: res.data[0] });
-  }
-  */
 };
 
-export const addNote = note => async dispatch => {
-  const res = await axios.post("/api/notes", note);
+export const editNote = updatedNote => async dispatch => {
+  updatedNote.updated_at = new Date();
+  let url = "/api/edit/";
+  const res = await axios.put(url.concat(updatedNote._id), updatedNote);
 
-  dispatch({ type: ADD_NOTE, payload: res.data });
+  dispatch({ type: EDIT_NOTE, payload: res.data });
 };
 
 /*
@@ -40,6 +45,8 @@ export const deleteNote = _id => async dispatch => {
   dispatch({ type: DELETE_NOTE, payload: _id });
 };*/
 
+// SELECTED NOTE REDUCER
+
 export const deleteNote = note => async dispatch => {
   note.deleted_at = new Date();
   let url = "/api/edit/";
@@ -48,28 +55,21 @@ export const deleteNote = note => async dispatch => {
   dispatch({ type: DELETE_NOTE, payload: res.data });
 };
 
-export const archiveNote = (note, archieved_at) => async dispatch => {
-  note.archieved_at = archieved_at;
-  let url = "/api/edit/";
-  const res = await axios.put(url.concat(note._id), note);
-
-  dispatch({ type: ARCHIVE_NOTE, payload: res.data });
-};
-
-export const starNote = note => async dispatch => {
-  note.starred = true;
-  let url = "/api/edit/";
-  const res = await axios.put(url.concat(note._id), note);
-
-  dispatch({ type: STAR_NOTE, payload: res.data });
-};
-
-export const editNote = updatedNote => async dispatch => {
-  updatedNote.updated_at = new Date();
+export const updateSelectedNote = updatedNote => async dispatch => {
   let url = "/api/edit/";
   const res = await axios.put(url.concat(updatedNote._id), updatedNote);
 
   dispatch({ type: EDIT_NOTE, payload: res.data });
+  dispatch({ type: UPDATE_SELECTED_NOTE, payload: res.data });
+};
+
+export const archiveNote = archieved_at => async dispatch => {
+  console.log("action creator: ", archieved_at);
+  dispatch({ type: ARCHIVE_NOTE, payload: archieved_at });
+};
+
+export const updateStarred = bool => dispatch => {
+  dispatch({ type: STAR_NOTE, payload: bool });
 };
 
 export const setSelectedNote = selectedNote => dispatch => {
@@ -82,10 +82,6 @@ export const updateTitle = title => dispatch => {
 
 export const updateBody = body => dispatch => {
   dispatch({ type: UPDATE_BODY, payload: body });
-};
-
-export const updateStarred = bool => dispatch => {
-  dispatch({ type: STAR_NOTE, payload: bool });
 };
 
 export const resetSelectedNoteProperties = () => dispatch => {

@@ -6,7 +6,8 @@ import {
   setMode,
   setSelectedNote,
   archiveNote,
-  updateStarred
+  updateStarred,
+  updateSelectedNote
 } from "../actions";
 import { ADD_MODE, VIEW_MODE, EDIT_MODE } from "../actions/types";
 import "./css/NoteDetailButtons.css";
@@ -36,12 +37,32 @@ class NoteDetailButtons extends Component {
   };
 
   onArchieve = () => {
-    if (this.props.selectedNote.archieved_at === null) {
-      this.props.archiveNote(this.props.selectedNote, new Date());
+    console.log("inside archive", this.props.selectedNote.archieved_at);
+    if (this.props.selectedNote.archieved_at == null) {
+      console.log("inside if == null");
+      this.props.selectedNote.archieved_at = new Date();
     } else {
-      this.props.archiveNote(this.props.selectedNote, null);
+      console.log("inside if != null");
+      this.props.selectedNote.archieved_at = null;
     }
-    this.props.setSelectedNote(this.props.selectedNote);
+
+    console.log("before updatedfunction ", this.props.selectedNote);
+    this.props.updateSelectedNote(this.props.selectedNote);
+
+    //this.props.archiveNote(new Date());
+    //this.props.editNote(this.props.selectedNote);
+    /*
+    console.log("archieved_at", this.props.selectedNote.archieved_at);
+    if (this.props.selectedNote.archieved_at === null) {
+      this.props.archiveNote(new Date());
+      this.props.editNote(this.props.selectedNote);
+      console.log("first if");
+    } else {
+      this.props.archiveNote(null);
+      this.props.editNote(this.props.selectedNote);
+      console.log("second if");
+    }
+    */
   };
 
   onStarred = () => {
@@ -84,12 +105,10 @@ class NoteDetailButtons extends Component {
         >
           <i
             className={
-              "ml-4 far fa-folder text-gray-700 hover:text-blue-500 " +
-              this.getClass(
-                this.props.selectedNote.archieved_at,
-                "fas fa-folder fa_folder-blue",
-                "fas fa-folder"
-              )
+              "ml-4 text-gray-700 hover:text-blue-500 " +
+              (this.props.selectedNote.archieved_at === null
+                ? "fas fa-folder"
+                : "fas fa-folder fa_folder-blue")
             }
           ></i>
         </button>
@@ -141,6 +160,7 @@ export default connect(
     setMode,
     setSelectedNote,
     archiveNote,
-    updateStarred
+    updateStarred,
+    updateSelectedNote
   }
 )(NoteDetailButtons);
