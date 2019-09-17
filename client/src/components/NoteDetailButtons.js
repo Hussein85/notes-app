@@ -133,7 +133,7 @@ class NoteDetailButtons extends Component {
         <button
           onClick={this.onConfirm}
           style={{
-            display: mode === VIEW_MODE ? "none" : ""
+            display: true ? "none" : ""
           }}
           className="focus:outline-none"
         >

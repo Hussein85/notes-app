@@ -5,9 +5,10 @@ import {
   updateBody,
   resetSelectedNoteProperties,
   editNote,
-  setMode
+  setMode,
+  addNote
 } from "../actions";
-import { ADD_MODE, VIEW_MODE } from "../actions/types";
+import { ADD_MODE, VIEW_MODE, EDIT_MODE } from "../actions/types";
 
 import { connect } from "react-redux";
 import "./css/NoteDetail.css";
@@ -23,7 +24,14 @@ class NoteDetail extends Component {
   onSave = () => {
     const mode = this.props.mode;
     this.props.setMode(VIEW_MODE);
-    this.props.editNote(this.props.selectedNote);
+
+    if (mode === ADD_MODE) {
+      this.props.addNote(this.props.selectedNote);
+    }
+
+    if (mode === EDIT_MODE) {
+      this.props.editNote(this.props.selectedNote);
+    }
   };
 
   onTitleChange = e => {
@@ -108,6 +116,7 @@ export default connect(
     updateBody,
     resetSelectedNoteProperties,
     setMode,
-    editNote
+    editNote,
+    addNote
   }
 )(NoteDetail);
