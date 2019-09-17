@@ -15,17 +15,9 @@ import "./css/NoteDetailButtons.css";
 import { connect } from "react-redux";
 
 class NoteDetailButtons extends Component {
-  onConfirm = () => {
-    const mode = this.props.mode;
-    this.props.setMode(VIEW_MODE);
-
-    if (mode === ADD_MODE) {
-      this.props.addNote(this.props.selectedNote);
-    }
-
-    if (mode === EDIT_MODE) {
-      this.props.editNote(this.props.selectedNote);
-    }
+  onDeleteRestore = () => {
+    this.props.selectedNote.deleted_at = null;
+    this.props.updateSelectedNote(this.props.selectedNote);
   };
 
   onEdit = () => {
@@ -44,32 +36,13 @@ class NoteDetailButtons extends Component {
   };
 
   onArchieve = () => {
-    console.log("inside archive", this.props.selectedNote.archieved_at);
     if (this.props.selectedNote.archieved_at == null) {
-      console.log("inside if == null");
       this.props.selectedNote.archieved_at = new Date();
     } else {
-      console.log("inside if != null");
       this.props.selectedNote.archieved_at = null;
     }
 
-    console.log("before updatedfunction ", this.props.selectedNote);
     this.props.updateSelectedNote(this.props.selectedNote);
-
-    //this.props.archiveNote(new Date());
-    //this.props.editNote(this.props.selectedNote);
-    /*
-    console.log("archieved_at", this.props.selectedNote.archieved_at);
-    if (this.props.selectedNote.archieved_at === null) {
-      this.props.archiveNote(new Date());
-      this.props.editNote(this.props.selectedNote);
-      console.log("first if");
-    } else {
-      this.props.archiveNote(null);
-      this.props.editNote(this.props.selectedNote);
-      console.log("second if");
-    }
-    */
   };
 
   onStarred = () => {
@@ -84,7 +57,7 @@ class NoteDetailButtons extends Component {
 
   render() {
     const mode = this.props.mode;
-
+    const visibilityFilter = this.props.visibilityFilter;
     return (
       <div className="ml-4 flex mb-8 justify-end">
         <button
@@ -138,13 +111,13 @@ class NoteDetailButtons extends Component {
           <i className="ml-4 fas fa-trash-alt text-gray-700 hover:text-red-600"></i>
         </button>
         <button
-          onClick={this.onConfirm}
+          onClick={this.onDeleteRestore}
           style={{
-            display: true ? "none" : ""
+            display: visibilityFilter === SHOW_DELETED ? "" : "none"
           }}
           className="focus:outline-none"
         >
-          <i className="ml-4 fas fa-check-circle text-gray-700 hover:text-green-400"></i>
+          <i className="ml-4 fas fa-trash-restore text-gray-700 hover:text-green-400"></i>
         </button>
       </div>
     );
