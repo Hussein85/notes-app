@@ -9,7 +9,7 @@ import {
   updateStarred,
   updateSelectedNote
 } from "../actions";
-import { ADD_MODE, VIEW_MODE, EDIT_MODE } from "../actions/types";
+import { ADD_MODE, VIEW_MODE, EDIT_MODE, SHOW_DELETED } from "../actions/types";
 import "./css/NoteDetailButtons.css";
 
 import { connect } from "react-redux";
@@ -33,7 +33,14 @@ class NoteDetailButtons extends Component {
   };
 
   onDelete = () => {
-    this.props.deleteNote(this.props.selectedNote);
+    const visibilityFilter = this.props.visibilityFilter;
+
+    if (visibilityFilter === SHOW_DELETED) {
+      this.props.deleteNote(this.props.selectedNote._id);
+    } else {
+      this.props.selectedNote.deleted_at = new Date();
+      this.props.updateSelectedNote(this.props.selectedNote);
+    }
   };
 
   onArchieve = () => {
@@ -147,7 +154,8 @@ class NoteDetailButtons extends Component {
 function mapStateToProps(state) {
   return {
     selectedNote: state.selectedNote,
-    mode: state.mode
+    mode: state.mode,
+    visibilityFilter: state.visibilityFilter
   };
 }
 
