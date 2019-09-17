@@ -32,7 +32,9 @@ class NoteList extends Component {
       case SHOW_ARCHIEVED:
         return sortedNotes.filter(note => note.archieved_at);
       case SHOW_STARRED:
-        return sortedNotes.filter(note => note.starred);
+        return sortedNotes.filter(
+          note => note.starred && note.deleted_at === null
+        );
       case SHOW_DELETED:
         return sortedNotes.filter(note => note.deleted_at);
       case SHOW_ALL:
