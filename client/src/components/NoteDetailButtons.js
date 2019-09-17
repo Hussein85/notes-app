@@ -59,7 +59,12 @@ class NoteDetailButtons extends Component {
     const mode = this.props.mode;
     const visibilityFilter = this.props.visibilityFilter;
     return (
-      <div className="ml-4 flex mb-8 justify-end">
+      <div
+        className={
+          "ml-4 flex mb-8 justify-end " +
+          (Object.keys(this.props.selectedNote).length === 0 ? "hidden" : "")
+        }
+      >
         <button
           onClick={() => {
             this.onStarred();
