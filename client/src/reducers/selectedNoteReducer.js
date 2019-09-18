@@ -2,7 +2,6 @@ import {
   SET_SELECTED_NOTE,
   DELETE_NOTE,
   RESET_SELECTED_NOTE_PROPERTIES,
-  STAR_NOTE,
   ARCHIVE_NOTE,
   UPDATE_SELECTED_NOTE,
   EDIT_SELECTED_NOTE
@@ -24,8 +23,6 @@ export default function(state = initialState, action) {
       return action.payload;
     case RESET_SELECTED_NOTE_PROPERTIES:
       return initialState;
-    case STAR_NOTE:
-      return { ...state, starred: action.payload };
     case ARCHIVE_NOTE:
       const t = { ...state, archieved_at: action.payload };
       return t;

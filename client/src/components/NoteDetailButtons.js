@@ -6,7 +6,6 @@ import {
   setMode,
   setSelectedNote,
   archiveNote,
-  updateStarred,
   updateSelectedNote
 } from "../actions";
 import { EDIT_MODE, SHOW_DELETED } from "../actions/types";
@@ -47,8 +46,7 @@ class NoteDetailButtons extends Component {
 
   onStarred = () => {
     this.props.selectedNote.starred = this.props.selectedNote.starred === false;
-    this.props.updateStarred(this.props.selectedNote.starred);
-    this.props.editNote(this.props.selectedNote);
+    this.props.updateSelectedNote(this.props.selectedNote);
   };
 
   getClass = (property, trueClass, falseClass) => {
@@ -146,7 +144,6 @@ export default connect(
     setMode,
     setSelectedNote,
     archiveNote,
-    updateStarred,
     updateSelectedNote
   }
 )(NoteDetailButtons);

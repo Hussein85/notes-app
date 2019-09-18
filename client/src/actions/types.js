@@ -3,7 +3,6 @@ export const ADD_NOTE = "add_note";
 export const DELETE_NOTE = "delete_note";
 export const EDIT_NOTE = "edit_note";
 export const ARCHIVE_NOTE = "archive_note";
-export const STAR_NOTE = "star_note";
 export const SET_SELECTED_NOTE = "set_selected_note";
 export const UPDATE_STARRED = "update_starred";
 export const RESET_SELECTED_NOTE_PROPERTIES = "reset_note_properties";

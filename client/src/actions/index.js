@@ -10,7 +10,6 @@ import {
   SET_MODE,
   RESET_SELECTED_NOTE_PROPERTIES,
   ARCHIVE_NOTE,
-  STAR_NOTE,
   UPDATE_SELECTED_NOTE,
   EDIT_SELECTED_NOTE
 } from "./types";
@@ -44,16 +43,6 @@ export const deleteNote = _id => async dispatch => {
 };
 
 // SELECTED NOTE REDUCER
-
-/*
-export const deleteNote = note => async dispatch => {
-  note.deleted_at = new Date();
-  let url = "/api/edit/";
-  const res = await axios.put(url.concat(note._id), note);
-
-  dispatch({ type: DELETE_NOTE, payload: res.data });
-};
-*/
 export const updateSelectedNote = updatedNote => async dispatch => {
   let url = "/api/edit/";
   const res = await axios.put(url.concat(updatedNote._id), updatedNote);
@@ -63,7 +52,6 @@ export const updateSelectedNote = updatedNote => async dispatch => {
 };
 
 export const archiveNote = archieved_at => async dispatch => {
-  console.log("action creator: ", archieved_at);
   dispatch({ type: ARCHIVE_NOTE, payload: archieved_at });
 };
 
@@ -71,10 +59,6 @@ export const editSelectedNote = (prop, value) => async dispatch => {
   const obj = {};
   obj[prop] = value;
   dispatch({ type: EDIT_SELECTED_NOTE, payload: obj });
-};
-
-export const updateStarred = bool => dispatch => {
-  dispatch({ type: STAR_NOTE, payload: bool });
 };
 
 export const setSelectedNote = selectedNote => dispatch => {

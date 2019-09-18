@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import {
-  setSelectedNote,
   resetSelectedNoteProperties,
   editNote,
   setMode,
@@ -113,7 +112,6 @@ function mapStateToProps(state) {
 export default connect(
   mapStateToProps,
   {
-    setSelectedNote,
     resetSelectedNoteProperties,
     setMode,
     editNote,
