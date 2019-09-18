@@ -2,22 +2,8 @@ import {
   FETCH_NOTES,
   ADD_NOTE,
   DELETE_NOTE,
-  EDIT_NOTE,
-  ARCHIVE_NOTE
-  //STAR_NOTE
+  EDIT_NOTE
 } from "../actions/types";
-
-const updateNote = (state, updatedNote, property) => {
-  return state.map((note, id) => {
-    if (note[property] !== updatedNote[property]) {
-      return note;
-    }
-    return {
-      ...note,
-      ...updatedNote
-    };
-  });
-};
 
 export default function(state = [], action) {
   switch (action.type) {
@@ -27,7 +13,6 @@ export default function(state = [], action) {
       const note = action.payload;
       return [...state, note];
     case DELETE_NOTE:
-      // TODO: it returns the whole array back. fix it.
       return state.filter(note => {
         return note._id !== action.payload;
       });

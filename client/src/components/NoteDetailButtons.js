@@ -9,7 +9,7 @@ import {
   updateStarred,
   updateSelectedNote
 } from "../actions";
-import { ADD_MODE, VIEW_MODE, EDIT_MODE, SHOW_DELETED } from "../actions/types";
+import { EDIT_MODE, SHOW_DELETED } from "../actions/types";
 import "./css/NoteDetailButtons.css";
 
 import { connect } from "react-redux";

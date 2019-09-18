@@ -45,12 +45,12 @@ class NoteDetail extends Component {
     const mode = this.props.mode;
     if (mode === VIEW_MODE) {
       return (
-        <div className>
+        <div>
           <div className="tracking-wider text-custom-blue font-bold text-2xl">
             {this.props.selectedNote.title}
           </div>
           <p
-            style={{ "white-space": "pre-wrap" }}
+            style={{ whiteSpace: "pre-wrap" }}
             className="text-sm font-medium text-gray-600 mt-4"
           >
             {this.props.selectedNote.body}
