@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import {
   setSelectedNote,
-  updateTitle,
-  updateBody,
   resetSelectedNoteProperties,
   editNote,
   setMode,
-  addNote
+  addNote,
+  editSelectedNote
 } from "../actions";
 import { ADD_MODE, VIEW_MODE, EDIT_MODE } from "../actions/types";
 
@@ -35,11 +34,11 @@ class NoteDetail extends Component {
   };
 
   onTitleChange = e => {
-    this.props.updateTitle(e.target.value);
+    this.props.editSelectedNote("title", e.target.value);
   };
 
   onBodyChange = e => {
-    this.props.updateBody(e.target.value);
+    this.props.editSelectedNote("body", e.target.value);
   };
 
   renderNoteDetail() {
@@ -115,11 +114,10 @@ export default connect(
   mapStateToProps,
   {
     setSelectedNote,
-    updateTitle,
-    updateBody,
     resetSelectedNoteProperties,
     setMode,
     editNote,
-    addNote
+    addNote,
+    editSelectedNote
   }
 )(NoteDetail);

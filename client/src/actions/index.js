@@ -8,12 +8,11 @@ import {
   SET_VISIBILITY_FILTER,
   SET_SEARCH_TERM,
   SET_MODE,
-  UPDATE_TITLE,
-  UPDATE_BODY,
   RESET_SELECTED_NOTE_PROPERTIES,
   ARCHIVE_NOTE,
   STAR_NOTE,
-  UPDATE_SELECTED_NOTE
+  UPDATE_SELECTED_NOTE,
+  EDIT_SELECTED_NOTE
 } from "./types";
 
 // NOTES REDUCER
@@ -68,20 +67,18 @@ export const archiveNote = archieved_at => async dispatch => {
   dispatch({ type: ARCHIVE_NOTE, payload: archieved_at });
 };
 
+export const editSelectedNote = (prop, value) => async dispatch => {
+  const obj = {};
+  obj[prop] = value;
+  dispatch({ type: EDIT_SELECTED_NOTE, payload: obj });
+};
+
 export const updateStarred = bool => dispatch => {
   dispatch({ type: STAR_NOTE, payload: bool });
 };
 
 export const setSelectedNote = selectedNote => dispatch => {
   dispatch({ type: SET_SELECTED_NOTE, payload: selectedNote });
-};
-
-export const updateTitle = title => dispatch => {
-  dispatch({ type: UPDATE_TITLE, payload: title });
-};
-
-export const updateBody = body => dispatch => {
-  dispatch({ type: UPDATE_BODY, payload: body });
 };
 
 export const resetSelectedNoteProperties = () => dispatch => {

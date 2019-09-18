@@ -1,12 +1,11 @@
 import {
   SET_SELECTED_NOTE,
-  UPDATE_BODY,
-  UPDATE_TITLE,
   DELETE_NOTE,
   RESET_SELECTED_NOTE_PROPERTIES,
   STAR_NOTE,
   ARCHIVE_NOTE,
-  UPDATE_SELECTED_NOTE
+  UPDATE_SELECTED_NOTE,
+  EDIT_SELECTED_NOTE
 } from "../actions/types";
 
 const initialState = {
@@ -25,10 +24,6 @@ export default function(state = initialState, action) {
       return action.payload;
     case RESET_SELECTED_NOTE_PROPERTIES:
       return initialState;
-    case UPDATE_BODY:
-      return { ...state, body: action.payload };
-    case UPDATE_TITLE:
-      return { ...state, title: action.payload };
     case STAR_NOTE:
       return { ...state, starred: action.payload };
     case ARCHIVE_NOTE:
@@ -39,6 +34,9 @@ export default function(state = initialState, action) {
     case UPDATE_SELECTED_NOTE:
       const updatedNote = action.payload;
       return { ...state, updatedNote };
+    case EDIT_SELECTED_NOTE:
+      const prop = action.payload;
+      return { ...state, ...prop };
     default:
       return state;
   }
