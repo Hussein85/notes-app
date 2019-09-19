@@ -3,28 +3,13 @@ import { setSearchTerm } from "../actions";
 import { connect } from "react-redux";
 
 class SearchBar extends Component {
-  state = {
-    searchTerm: ""
-  };
-
   onChange = e => {
-    this.setState({
-      searchTerm: e.target.value
-    });
     this.props.setSearchTerm(e.target.value);
   };
 
   onSubmit = e => {
     e.preventDefault();
-
     this.props.setSearchTerm(this.props.searchTerm);
-
-    // TODO remove later since it is stored in the store
-    // this.props.addNote(this.state.searchTerm);
-    this.props.onSubmit(this.state.searchTerm);
-    this.setState({
-      searchTerm: ""
-    });
   };
 
   render() {
@@ -37,21 +22,9 @@ class SearchBar extends Component {
             placeholder="Search a note"
             type="text"
             onChange={this.onChange}
-            value={this.state.searchTerm}
+            value={this.props.searchTerm}
           />
         </form>
-        {/*
-          <div>
-            <form onSubmit={this.onSubmit}>
-              <input
-                placeholder="Search a note"
-                type="text"
-                onChange={this.onChange}
-                value={this.state.searchTerm}
-              />
-            </form>
-          </div>
-          */}
       </div>
     );
   }

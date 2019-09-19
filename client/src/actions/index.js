@@ -9,7 +9,6 @@ import {
   SET_SEARCH_TERM,
   SET_MODE,
   RESET_SELECTED_NOTE_PROPERTIES,
-  ARCHIVE_NOTE,
   UPDATE_SELECTED_NOTE,
   EDIT_SELECTED_NOTE
 } from "./types";
@@ -49,10 +48,6 @@ export const updateSelectedNote = updatedNote => async dispatch => {
 
   dispatch({ type: EDIT_NOTE, payload: res.data });
   dispatch({ type: UPDATE_SELECTED_NOTE, payload: res.data });
-};
-
-export const archiveNote = archieved_at => async dispatch => {
-  dispatch({ type: ARCHIVE_NOTE, payload: archieved_at });
 };
 
 export const editSelectedNote = (prop, value) => async dispatch => {

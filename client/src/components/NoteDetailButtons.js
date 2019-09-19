@@ -5,7 +5,6 @@ import {
   deleteNote,
   setMode,
   setSelectedNote,
-  archiveNote,
   updateSelectedNote
 } from "../actions";
 import { EDIT_MODE, SHOW_DELETED } from "../actions/types";
@@ -143,7 +142,6 @@ export default connect(
     deleteNote,
     setMode,
     setSelectedNote,
-    archiveNote,
     updateSelectedNote
   }
 )(NoteDetailButtons);

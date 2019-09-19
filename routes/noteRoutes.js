@@ -17,8 +17,8 @@ module.exports = app => {
       body: req.body.body,
       created_at: Date.now(),
       updated_at: Date.now(),
-      deleted_at: "",
-      archieved_at: "",
+      deleted_at: null,
+      archieved_at: null,
       starred: false
     });
 

@@ -17,10 +17,6 @@ import { connect } from "react-redux";
 import "./css/NoteList.css";
 
 class NoteList extends Component {
-  onSearchSubmit = term => {
-    console.log("search term: ", term);
-  };
-
   getVisibleNotes = notes => {
     const visibilityFilter = this.props.visibilityFilter;
 
@@ -81,24 +77,13 @@ class NoteList extends Component {
       <div>
         <div className="bg-custom-lighterBlue flex w-64 h-full flex-col justify-between">
           <div>
-            <SearchBar onSubmit={this.onSearchSubmit} />
-
+            <SearchBar />
             <div className="flex flex-col overflow-y-auto">
               {this.renderNoteList()}
             </div>
           </div>
-
           <AddButton />
         </div>
-
-        {/* 
-        <div className="addNote">
-          <AddNote addNote={this.addNote} />
-        </div>
-        <div className={notes.length > 0 ? "collection" : "hidden"}>
-          {this.renderNoteList()}
-        </div>
-        */}
       </div>
     );
   }
