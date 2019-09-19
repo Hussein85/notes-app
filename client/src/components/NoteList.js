@@ -26,7 +26,9 @@ class NoteList extends Component {
 
     switch (visibilityFilter) {
       case SHOW_ARCHIEVED:
-        return sortedNotes.filter(note => note.archieved_at);
+        return sortedNotes.filter(
+          note => note.archieved_at && note.deleted_at === null
+        );
       case SHOW_STARRED:
         return sortedNotes.filter(
           note => note.starred && note.deleted_at === null
