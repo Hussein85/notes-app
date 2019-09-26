@@ -5,7 +5,8 @@ import {
   deleteNote,
   setMode,
   setSelectedNote,
-  updateSelectedNote
+  updateSelectedNote,
+  resetSelectedNoteProperties
 } from "../actions";
 import { EDIT_MODE, SHOW_DELETED } from "../actions/types";
 import "./css/NoteDetailButtons.css";
@@ -30,6 +31,7 @@ class NoteDetailButtons extends Component {
     } else {
       this.props.selectedNote.deleted_at = new Date();
       this.props.updateSelectedNote(this.props.selectedNote);
+      this.props.resetSelectedNoteProperties({});
     }
   };
 
@@ -130,7 +132,8 @@ function mapStateToProps(state) {
   return {
     selectedNote: state.selectedNote,
     mode: state.mode,
-    visibilityFilter: state.visibilityFilter
+    visibilityFilter: state.visibilityFilter,
+    notes: state.notes
   };
 }
 
@@ -142,6 +145,7 @@ export default connect(
     deleteNote,
     setMode,
     setSelectedNote,
-    updateSelectedNote
+    updateSelectedNote,
+    resetSelectedNoteProperties
   }
 )(NoteDetailButtons);

@@ -2,13 +2,7 @@ import React, { Component } from "react";
 import SearchBar from "./SearchBar";
 import Note from "./Note";
 import AddButton from "./AddButton";
-
-import {
-  SHOW_ALL,
-  SHOW_STARRED,
-  SHOW_DELETED,
-  SHOW_ARCHIEVED
-} from "../actions/types";
+import { getVisibleNotes } from "./utils";
 
 import { setSelectedNote } from "../actions";
 
@@ -17,33 +11,6 @@ import { connect } from "react-redux";
 import "./css/NoteList.css";
 
 class NoteList extends Component {
-  getVisibleNotes = notes => {
-    const visibilityFilter = this.props.visibilityFilter;
-
-    const sortedNotes = notes.sort((a, b) => {
-      return new Date(b.updated_at) - new Date(a.updated_at);
-    });
-
-    switch (visibilityFilter) {
-      case SHOW_ARCHIEVED:
-        return sortedNotes.filter(
-          note => note.archieved_at && note.deleted_at === null
-        );
-      case SHOW_STARRED:
-        return sortedNotes.filter(
-          note => note.starred && note.deleted_at === null
-        );
-      case SHOW_DELETED:
-        return sortedNotes.filter(note => note.deleted_at);
-      case SHOW_ALL:
-        return sortedNotes.filter(
-          note => note.deleted_at === null && note.archieved_at === null
-        );
-      default:
-        return sortedNotes;
-    }
-  };
-
   searchedNotes = (notes, searchTerm) => {
     if (searchTerm === "") {
       return notes;
@@ -55,8 +22,8 @@ class NoteList extends Component {
   };
 
   renderNoteList() {
-    const { notes } = this.props;
-    const visibleNotes = this.getVisibleNotes(notes);
+    const { notes, visibilityFilter } = this.props;
+    const visibleNotes = getVisibleNotes(notes, visibilityFilter);
     if (visibleNotes.length) {
       this.props.setSelectedNote(visibleNotes[0]);
     } else {
