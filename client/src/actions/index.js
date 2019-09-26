@@ -28,7 +28,7 @@ export const fetchNotes = () => async dispatch => {
 
 export const editNote = updatedNote => async dispatch => {
   updatedNote.updated_at = new Date();
-  let url = "/api/edit/";
+  const url = "/api/edit/";
   const res = await axios.put(url.concat(updatedNote._id), updatedNote);
 
   dispatch({ type: EDIT_NOTE, payload: res.data });
@@ -43,7 +43,7 @@ export const deleteNote = _id => async dispatch => {
 
 // SELECTED NOTE REDUCER
 export const updateSelectedNote = updatedNote => async dispatch => {
-  let url = "/api/edit/";
+  const url = "/api/edit/";
   const res = await axios.put(url.concat(updatedNote._id), updatedNote);
 
   dispatch({ type: EDIT_NOTE, payload: res.data });

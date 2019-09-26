@@ -16,7 +16,7 @@ const icons = [
   { title: "Deleted", icon: "far fa-trash-alt fa-lg", filter: SHOW_DELETED }
 ];
 
-let menuButtonsAdjust = {
+const menuButtonsAdjust = {
   marginLeft: "4px"
 };
 

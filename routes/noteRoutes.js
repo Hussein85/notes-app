@@ -46,7 +46,7 @@ module.exports = app => {
     const filter = {};
     filter["_id"] = _id;
 
-    let updatedNote = await Note.findOneAndUpdate(filter, req.body, {
+    const updatedNote = await Note.findOneAndUpdate(filter, req.body, {
       new: true
     });
 
