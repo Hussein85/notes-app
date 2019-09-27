@@ -26,7 +26,7 @@ class App extends Component {
   render() {
     return (
       <div
-        className="bg-image bg-gray-100 px-56 py-20 xl:px-24 xl:py-12 h-screen "
+        className="px-56 py-20 xl:px-24 xl:py-12 h-screen "
         style={styles.container}
       >
         <div className="flex overflow-hidden shadow-xl h-full max-w-6xl mx-auto rounded-lg">
