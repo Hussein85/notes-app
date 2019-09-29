@@ -33,6 +33,17 @@ class NoteList extends Component {
     const searchTerm = this.props.searchTerm;
     const filteredNotes = this.searchedNotes(visibleNotes, searchTerm);
 
+    if (notes.length === 0) {
+      return (
+        <div className="mt-6 mx-auto lds-ring">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      );
+    }
+
     return (
       filteredNotes &&
       filteredNotes.map(note => {
