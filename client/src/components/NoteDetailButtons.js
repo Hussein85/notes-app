@@ -7,7 +7,7 @@ import {
   setSelectedNote,
   resetSelectedNoteProperties
 } from "../actions";
-import { EDIT_MODE, SHOW_DELETED } from "../actions/types";
+import { EDIT_MODE, SHOW_DELETED, ADD_MODE } from "../actions/types";
 import "./css/NoteDetailButtons.css";
 
 import { connect } from "react-redux";
@@ -60,7 +60,10 @@ class NoteDetailButtons extends Component {
       <div
         className={
           "ml-4 flex mb-8 justify-end " +
-          (Object.keys(this.props.selectedNote).length === 0 ? "hidden" : "")
+          (Object.keys(this.props.selectedNote).length === 0 ||
+          this.props.mode === ADD_MODE
+            ? "hidden"
+            : "")
         }
       >
         <button
