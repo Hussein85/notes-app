@@ -29,9 +29,9 @@ export const fetchNotes = () => async dispatch => {
 export const editNote = updatedNote => async dispatch => {
   updatedNote.updated_at = new Date();
   const url = "/api/edit/";
-  const res = await axios.put(url.concat(updatedNote._id), updatedNote);
+  await axios.put(url.concat(updatedNote._id), updatedNote);
 
-  dispatch({ type: EDIT_NOTE, payload: res.data });
+  dispatch({ type: EDIT_NOTE, payload: updatedNote });
 };
 
 export const deleteNote = _id => async dispatch => {
@@ -44,10 +44,10 @@ export const deleteNote = _id => async dispatch => {
 // SELECTED NOTE REDUCER
 export const updateSelectedNote = updatedNote => async dispatch => {
   const url = "/api/edit/";
-  const res = await axios.put(url.concat(updatedNote._id), updatedNote);
+  await axios.put(url.concat(updatedNote._id), updatedNote);
 
-  dispatch({ type: EDIT_NOTE, payload: res.data });
-  dispatch({ type: UPDATE_SELECTED_NOTE, payload: res.data });
+  dispatch({ type: EDIT_NOTE, payload: updatedNote });
+  dispatch({ type: UPDATE_SELECTED_NOTE, payload: updatedNote });
 };
 
 export const editSelectedNote = (prop, value) => async dispatch => {

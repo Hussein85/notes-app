@@ -19,7 +19,8 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case SET_SELECTED_NOTE:
-      return action.payload;
+      const selectedNote = action.payload;
+      return { ...selectedNote };
     case RESET_SELECTED_NOTE_PROPERTIES:
       return initialState;
     case DELETE_NOTE:

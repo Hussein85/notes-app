@@ -47,7 +47,8 @@ class NoteDetailButtons extends Component {
 
   onStarred = () => {
     this.props.selectedNote.starred = this.props.selectedNote.starred === false;
-    this.props.updateSelectedNote(this.props.selectedNote);
+    this.props.setSelectedNote(this.props.selectedNote);
+    this.props.editNote(this.props.selectedNote);
   };
 
   getClass = (property, trueClass, falseClass) => {
