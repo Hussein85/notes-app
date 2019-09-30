@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import {
-  addNote,
-  editNote,
-  deleteNote,
-  setMode,
-  setSelectedNote,
-  resetSelectedNoteProperties
-} from "../actions";
+import { editNote, deleteNote, setMode, setSelectedNote } from "../actions";
 import { EDIT_MODE, SHOW_DELETED, ADD_MODE } from "../actions/types";
 import "./css/NoteDetailButtons.css";
 
@@ -135,19 +128,16 @@ function mapStateToProps(state) {
   return {
     selectedNote: state.selectedNote,
     mode: state.mode,
-    visibilityFilter: state.visibilityFilter,
-    notes: state.notes
+    visibilityFilter: state.visibilityFilter
   };
 }
 
 export default connect(
   mapStateToProps,
   {
-    addNote,
     editNote,
     deleteNote,
     setMode,
-    setSelectedNote,
-    resetSelectedNoteProperties
+    setSelectedNote
   }
 )(NoteDetailButtons);

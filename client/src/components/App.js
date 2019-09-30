@@ -39,13 +39,7 @@ class App extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    visibilityFilter: state.visibilityFilter
-  };
-}
-
 export default connect(
-  mapStateToProps,
+  null,
   actions
 )(App);
