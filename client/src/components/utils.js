@@ -17,7 +17,8 @@ export const getVisibleNotes = (notes, visibilityFilter) => {
       );
     case SHOW_STARRED:
       return sortedNotes.filter(
-        note => note.starred && note.deleted_at === null
+        note =>
+          note.starred && note.deleted_at === null && note.archieved_at === null
       );
     case SHOW_DELETED:
       return sortedNotes.filter(note => note.deleted_at);
