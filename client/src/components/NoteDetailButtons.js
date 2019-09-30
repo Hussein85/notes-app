@@ -61,7 +61,8 @@ class NoteDetailButtons extends Component {
         className={
           "ml-4 flex mb-8 justify-end " +
           (Object.keys(this.props.selectedNote).length === 0 ||
-          this.props.mode === ADD_MODE
+          this.props.mode === ADD_MODE ||
+          this.props.mode === EDIT_MODE
             ? "hidden"
             : "")
         }
