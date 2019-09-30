@@ -5,7 +5,6 @@ import {
   deleteNote,
   setMode,
   setSelectedNote,
-  updateSelectedNote,
   resetSelectedNoteProperties
 } from "../actions";
 import { EDIT_MODE, SHOW_DELETED } from "../actions/types";
@@ -16,7 +15,7 @@ import { connect } from "react-redux";
 class NoteDetailButtons extends Component {
   onDeleteRestore = () => {
     this.props.selectedNote.deleted_at = null;
-    this.props.updateSelectedNote(this.props.selectedNote);
+    this.props.editNote(this.props.selectedNote);
   };
 
   onEdit = () => {
@@ -41,7 +40,7 @@ class NoteDetailButtons extends Component {
       this.props.selectedNote.archieved_at = null;
     }
 
-    this.props.updateSelectedNote(this.props.selectedNote);
+    this.props.editNote(this.props.selectedNote);
   };
 
   onStarred = () => {
@@ -145,7 +144,6 @@ export default connect(
     deleteNote,
     setMode,
     setSelectedNote,
-    updateSelectedNote,
     resetSelectedNoteProperties
   }
 )(NoteDetailButtons);

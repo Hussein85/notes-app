@@ -9,7 +9,6 @@ import {
   SET_SEARCH_TERM,
   SET_MODE,
   RESET_SELECTED_NOTE_PROPERTIES,
-  UPDATE_SELECTED_NOTE,
   EDIT_SELECTED_NOTE
 } from "./types";
 
@@ -42,14 +41,6 @@ export const deleteNote = _id => async dispatch => {
 };
 
 // SELECTED NOTE REDUCER
-export const updateSelectedNote = updatedNote => async dispatch => {
-  const url = "/api/edit/";
-  await axios.put(url.concat(updatedNote._id), updatedNote);
-
-  dispatch({ type: EDIT_NOTE, payload: updatedNote });
-  dispatch({ type: UPDATE_SELECTED_NOTE, payload: updatedNote });
-};
-
 export const editSelectedNote = (prop, value) => async dispatch => {
   const obj = {};
   obj[prop] = value;

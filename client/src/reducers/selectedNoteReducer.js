@@ -2,7 +2,6 @@ import {
   SET_SELECTED_NOTE,
   DELETE_NOTE,
   RESET_SELECTED_NOTE_PROPERTIES,
-  UPDATE_SELECTED_NOTE,
   EDIT_SELECTED_NOTE
 } from "../actions/types";
 
@@ -25,9 +24,6 @@ export default function(state = initialState, action) {
       return initialState;
     case DELETE_NOTE:
       return action.payload;
-    case UPDATE_SELECTED_NOTE:
-      const updatedNote = action.payload;
-      return { ...state, ...updatedNote };
     case EDIT_SELECTED_NOTE:
       const prop = action.payload;
       return { ...state, ...prop };

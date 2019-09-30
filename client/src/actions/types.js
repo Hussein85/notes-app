@@ -21,7 +21,6 @@ export const EDIT_MODE = "edit_mode";
 export const VIEW_MODE = "view_mode";
 
 // selectedNote property
-export const UPDATE_SELECTED_NOTE = "update_selected_note";
 export const EDIT_SELECTED_NOTE = "edit_selected_note";
 export const SET_SELECTED_NOTE = "set_selected_note";
 export const RESET_SELECTED_NOTE_PROPERTIES = "reset_note_properties";
