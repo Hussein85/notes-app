@@ -30,8 +30,7 @@ class NoteDetailButtons extends Component {
       this.props.deleteNote(this.props.selectedNote._id);
     } else {
       this.props.selectedNote.deleted_at = new Date();
-      this.props.updateSelectedNote(this.props.selectedNote);
-      this.props.resetSelectedNoteProperties({});
+      this.props.editNote(this.props.selectedNote);
     }
   };
 
