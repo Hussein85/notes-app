@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { BrowserRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../actions";
 
@@ -9,30 +10,17 @@ import NoteDetail from "./NoteDetail";
 import Login from "./Login";
 import "./css/App.css";
 
-import Image from "../img/img2.jpg";
-
-const styles = {
-  container: {
-    backgroundImage: `url(${Image})`,
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover"
-  }
-};
-
 class App extends Component {
   componentDidMount() {
     this.props.fetchNotes();
   }
 
   render() {
-    var bool = false;
+    var bool = true;
 
     if (bool) {
       return (
-        <div
-          className="px-56 py-20 xl:px-24 xl:py-12 h-screen "
-          style={styles.container}
-        >
+        <div className="backgroundImage px-56 py-20 xl:px-24 xl:py-12 h-screen ">
           <div className="flex overflow-hidden shadow-xl h-full max-w-6xl mx-auto rounded-lg">
             <Sidebar />
             <NoteList />
@@ -41,12 +29,7 @@ class App extends Component {
         </div>
       );
     } else {
-      return (
-        <div className="w-screen h-screen " style={styles.container}>
-          <div className="opacity-75 background-gradient opacityBlur h-full w-full"></div>
-          <Login />
-        </div>
-      );
+      return <Login />;
     }
   }
 }
