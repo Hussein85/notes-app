@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 import {
   resetSelectedNoteProperties,
   editNote,
@@ -93,7 +94,15 @@ class NoteDetail extends Component {
 
   render() {
     return (
-      <div className="bg-white flex-auto flex flex-col px-16 pt-10 justify-between">
+      <div className="relative bg-white flex-auto flex flex-col px-16 pt-10 justify-between">
+        <div className="absolute right-0 top-0 mt-4 mr-8">
+          <i className="mr-2 far fa-user"></i>
+          <span className="font-bold ">Hussein</span>
+          <a href="/api/logout">
+            <i className="ml-4 fas fa-sign-out-alt"></i>
+          </a>
+        </div>
+
         {this.renderNoteDetail()}
 
         <NoteDetailButtons />

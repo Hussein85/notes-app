@@ -2,24 +2,27 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./css/Login.css";
 
-class Register extends Component {
+class Signup extends Component {
   render() {
     return (
       <div className="w-screen h-screen backgroundImage">
         <div className="opacity-75 background-gradient opacityBlur h-full w-full"></div>
         <div className="login-card">
-          <h1>Register</h1>
+          <h1>Sign up</h1>
           <br />
-          <form action="/register" method="post">
+          <form action="/api/signup" method="post">
             <input type="text" name="name" placeholder="Your name" />
             <input type="text" name="username" placeholder="Username" />
             <input type="password" name="password" placeholder="Password" />
             <input
               type="submit"
               className="login login-submit"
-              value="Register"
+              value="Sign up"
             />
           </form>
+          <div className="login-help">
+            Already have an account? <a href="/">Login</a>
+          </div>
         </div>
       </div>
     );
@@ -29,4 +32,4 @@ class Register extends Component {
 export default connect(
   null,
   {}
-)(Register);
+)(Signup);

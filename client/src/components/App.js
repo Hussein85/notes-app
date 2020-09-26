@@ -6,7 +6,7 @@ import * as actions from "../actions";
 // import components
 import NotesApp from "./NotesApp";
 import Login from "./Login";
-import Register from "./Register";
+import Signup from "./Signup";
 import "./css/App.css";
 
 class App extends Component {
@@ -19,7 +19,7 @@ class App extends Component {
       <BrowserRouter>
         <div>
           <Route exact path="/" component={Login} />
-          <Route exact path="/register" component={Register} />
+          <Route exact path="/signup" component={Signup} />
           <Route exact path="/notesApp" component={NotesApp} />
         </div>
       </BrowserRouter>

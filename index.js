@@ -4,7 +4,9 @@ const cookieSession = require("cookie-session");
 const passport = require("passport");
 const bodyParser = require("body-parser");
 const keys = require("./config/keys");
+require("./models/User");
 require("./models/Note");
+require("./services/passport");
 
 // connect to mongoDB
 mongoose.connect(keys.mongoURI);
@@ -13,15 +15,17 @@ const app = express();
 
 // Middlewares are used here
 app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(
   cookieSession({
     maxAge: 30 * 24 * 60 * 60 * 1000, // milliseconds
     keys: [keys.cookieKey] // for encryption of cookie
   })
 );
-//app.use(passport.initialize()); // Tell passport to use cookies
-//app.use(passport.session());
+app.use(passport.initialize()); // Tell passport to use cookies
+app.use(passport.session());
 
+require("./routes/authRoutes")(app);
 require("./routes/noteRoutes")(app);
 
 if (process.env.NODE_ENV === "production") {
