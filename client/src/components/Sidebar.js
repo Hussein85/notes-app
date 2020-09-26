@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { deleteNote, editNote, setVisibilityFilter } from "../actions";
+import { setVisibilityFilter } from "../actions";
 import {
   SHOW_ALL,
   SHOW_STARRED,
@@ -81,5 +81,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { deleteNote, editNote, setVisibilityFilter }
+  { setVisibilityFilter }
 )(Sidebar);
